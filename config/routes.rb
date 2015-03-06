@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :posts
+
   resources :user_accounts
   root 'user_accounts#index'
 
