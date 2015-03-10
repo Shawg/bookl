@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-<<<<<<< HEAD
   resources :posts
-=======
   root 'static_pages#home'
->>>>>>> 3aa44525aafb5ae2f164706b476a7e2a5f8f2ce5
 
   resources :user_accounts
   get 'user_accounts/index'
