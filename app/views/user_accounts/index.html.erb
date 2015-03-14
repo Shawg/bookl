@@ -6,7 +6,6 @@
   <thead>
     <tr>
       <th>Email</th>
-      <th>Password</th>
       <th>Isadmin?</th>
       <th colspan="3"></th>
     </tr>
@@ -16,7 +15,6 @@
     <% @user_accounts.each do |user_account| %>
       <tr>
         <td><%= user_account.email %></td>
-        <td><%= user_account.password %></td>
         <td><%= user_account.isAdmin? %></td>
         <td><%= link_to 'Show', user_account %></td>
         <td><%= link_to 'Edit', edit_user_account_path(user_account) %></td>

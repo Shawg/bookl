@@ -1,11 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  email: MyString
-  password: MyString
+  email: foo@bar.com
   isAdmin?: false
 
 two:
-  email: MyString
-  password: MyString
+  email: example@buzz.com
   isAdmin?: false
