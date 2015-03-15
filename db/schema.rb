@@ -11,7 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314053709) do
+ActiveRecord::Schema.define(version: 20150314234906) do
+
+  create_table "authors", force: :cascade do |t|
+    t.string   "au_lname"
+    t.string   "au_fname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "availabilities", force: :cascade do |t|
+    t.date     "day"
+    t.time     "startTime"
+    t.time     "endTime"
+    t.string   "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "books", force: :cascade do |t|
+    t.integer  "ISBN"
+    t.integer  "volume"
+    t.string   "edition"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string   "department"
+    t.integer  "courseNumber"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "price"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "user_accounts", force: :cascade do |t|
     t.string   "email"
