@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :user_accounts
   get 'user_accounts/index'
-  get 'signup' => 'user_acounts#new'
+  get 'signup' => 'user_accounts#new'
   
   get 'static_pages/about'
 
