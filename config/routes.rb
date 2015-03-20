@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
   resources :posts
+
+
   root 'static_pages#home'
 
   resources :user_accounts
   get 'user_accounts/index'
-
+  get 'signup' => 'user_acounts#new'
+  
   get 'static_pages/about'
 
   # The priority is based upon order of creation: first created -> highest priority.
