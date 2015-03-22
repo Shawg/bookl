@@ -29,6 +29,7 @@ class UserAccountsController < ApplicationController
     respond_to do |format|
       if @user_account.save
         flash[:success] = "Welcome to Bookl!"
+        log_in @user_account
         format.html { redirect_to @user_account }
         format.json { render :show, status: :created, location: @user_account }
       else

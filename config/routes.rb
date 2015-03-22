@@ -5,8 +5,7 @@ Rails.application.routes.draw do
   get 'user_accounts/index'
   get 'signup' => 'user_accounts#new'
   
-  get 'static_pages/about'
-
+  get  'static_pages/about'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
