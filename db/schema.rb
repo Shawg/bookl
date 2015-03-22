@@ -11,13 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314234906) do
+ActiveRecord::Schema.define(version: 20150320213938) do
 
   create_table "authors", force: :cascade do |t|
     t.string   "au_lname"
     t.string   "au_fname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "authors_books", id: false, force: :cascade do |t|
+    t.integer "book_id",   null: false
+    t.integer "author_id", null: false
   end
 
   create_table "availabilities", force: :cascade do |t|
@@ -29,6 +34,11 @@ ActiveRecord::Schema.define(version: 20150314234906) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "availabilities_posts", id: false, force: :cascade do |t|
+    t.integer "post_id",         null: false
+    t.integer "availability_id", null: false
+  end
+
   create_table "books", force: :cascade do |t|
     t.integer  "ISBN"
     t.integer  "volume"
@@ -36,6 +46,16 @@ ActiveRecord::Schema.define(version: 20150314234906) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "books_courses", id: false, force: :cascade do |t|
+    t.integer "course_id", null: false
+    t.integer "book_id",   null: false
+  end
+
+  create_table "books_posts", id: false, force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "book_id", null: false
   end
 
   create_table "courses", force: :cascade do |t|
@@ -51,11 +71,26 @@ ActiveRecord::Schema.define(version: 20150314234906) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "messages_posts", id: false, force: :cascade do |t|
+    t.integer "post_id",    null: false
+    t.integer "message_id", null: false
+  end
+
+  create_table "messages_user_accounts", id: false, force: :cascade do |t|
+    t.integer "message_id",      null: false
+    t.integer "user_account_id", null: false
+  end
+
   create_table "posts", force: :cascade do |t|
     t.integer  "price"
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "posts_user_accounts", id: false, force: :cascade do |t|
+    t.integer "post_id",         null: false
+    t.integer "user_account_id", null: false
   end
 
   create_table "user_accounts", force: :cascade do |t|

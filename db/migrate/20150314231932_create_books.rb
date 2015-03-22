@@ -8,5 +8,6 @@ class CreateBooks < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :books, :post_id
   end
 end
