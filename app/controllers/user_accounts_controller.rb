@@ -28,7 +28,8 @@ class UserAccountsController < ApplicationController
 
     respond_to do |format|
       if @user_account.save
-        format.html { redirect_to @user_account, notice: 'User account was successfully created.' }
+        flash[:success] = "Welcome to Bookl!"
+        format.html { redirect_to @user_account }
         format.json { render :show, status: :created, location: @user_account }
       else
         format.html { render :new }
@@ -69,6 +70,6 @@ class UserAccountsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_account_params
-      params.require(:user_account).permit(:email, :password, :isAdmin?)
+      params.require(:user_account).permit(:email, :password, :password_confirmation, :isAdmin?)
     end
 end
