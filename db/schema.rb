@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320213938) do
+ActiveRecord::Schema.define(version: 20150322235706) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
     t.string   "au_lname"
@@ -32,11 +35,7 @@ ActiveRecord::Schema.define(version: 20150320213938) do
     t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "availabilities_posts", id: false, force: :cascade do |t|
-    t.integer "post_id",         null: false
-    t.integer "availability_id", null: false
+    t.integer  "post_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -53,11 +52,6 @@ ActiveRecord::Schema.define(version: 20150320213938) do
     t.integer "book_id",   null: false
   end
 
-  create_table "books_posts", id: false, force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "book_id", null: false
-  end
-
   create_table "courses", force: :cascade do |t|
     t.string   "department"
     t.integer  "courseNumber"
@@ -67,18 +61,10 @@ ActiveRecord::Schema.define(version: 20150320213938) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "messages_posts", id: false, force: :cascade do |t|
-    t.integer "post_id",    null: false
-    t.integer "message_id", null: false
-  end
-
-  create_table "messages_user_accounts", id: false, force: :cascade do |t|
-    t.integer "message_id",      null: false
-    t.integer "user_account_id", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "post_id"
+    t.integer  "user_account_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -86,11 +72,7 @@ ActiveRecord::Schema.define(version: 20150320213938) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "posts_user_accounts", id: false, force: :cascade do |t|
-    t.integer "post_id",         null: false
-    t.integer "user_account_id", null: false
+    t.integer  "book_id"
   end
 
   create_table "user_accounts", force: :cascade do |t|
@@ -101,4 +83,12 @@ ActiveRecord::Schema.define(version: 20150320213938) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "availabilities", "posts", name: "availabilities_post_id_fk"
+  add_foreign_key "availabilities", "posts", name: "post_id"
+  add_foreign_key "messages", "posts", name: "messages_post_id_fk"
+  add_foreign_key "messages", "posts", name: "post_id"
+  add_foreign_key "messages", "user_accounts", name: "messages_user_account_id_fk"
+  add_foreign_key "messages", "user_accounts", name: "user_id"
+  add_foreign_key "posts", "books", name: "book_id"
+  add_foreign_key "posts", "books", name: "posts_books_id_fk"
 end
