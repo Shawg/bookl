@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
 
+  get 'search/retreive'
+
   root 'static_pages#home'
 
   get 'user_accounts/index'
   get 'user_accounts/new'
   get 'user_accounts/edit'
   get 'user_accounts/show'
-
+  get 'search/retreive'
   get 'static_pages/about'
   get 'signup' => 'user_accounts#new'
   
