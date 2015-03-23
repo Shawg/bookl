@@ -10,10 +10,10 @@ Rails.application.routes.draw do
   get 'user_accounts/show'
   get 'search/retreive'
   get 'static_pages/about'
+
   get 'signup' => 'user_accounts#new'
   
-  get 'static_pages/about'
-
+  get  'static_pages/about'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

@@ -1,5 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+Han:
+  email: han@solo.com
+  password_digest: <%= UserAccount.digest('chewie') %>
+  isAdmin?: false
+
+
 one:
   email: foo@bar.com
   isAdmin?: false

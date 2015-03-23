@@ -472,6 +472,7 @@ ALTER TABLE ONLY messages
 
 SET search_path TO "$user",public;
 
+>>>>>>> db_associations/constraints
 INSERT INTO schema_migrations (version) VALUES ('20150305212052');
 
 INSERT INTO schema_migrations (version) VALUES ('20150314051955');
@@ -480,6 +481,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150314052806');
 
 INSERT INTO schema_migrations (version) VALUES ('20150314053709');
 
+<<<<<<< HEAD
+=======
 INSERT INTO schema_migrations (version) VALUES ('20150314231932');
 
 INSERT INTO schema_migrations (version) VALUES ('20150314233753');
@@ -513,4 +516,3 @@ INSERT INTO schema_migrations (version) VALUES ('20150322224416');
 INSERT INTO schema_migrations (version) VALUES ('20150322225346');
 
 INSERT INTO schema_migrations (version) VALUES ('20150322235706');
-
