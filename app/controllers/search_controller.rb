@@ -1,13 +1,12 @@
 class SearchController < ApplicationController
+	def display
+		@results ||= retreive_results
+	end
 
-	def new
-    	@post = Post.new
-  	end
+	private
 
-  	def show
-  	end
-
-	def retreive
+	def retreive_results
+		Post.find(:all)
 	end
 
 end
