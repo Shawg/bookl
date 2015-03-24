@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322223811) do
+ActiveRecord::Schema.define(version: 20150324230134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,8 +67,10 @@ ActiveRecord::Schema.define(version: 20150322223811) do
   create_table "posts", force: :cascade do |t|
     t.integer  "price"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "book_id"
+    t.integer  "user_account_id"
   end
 
   create_table "searches", force: :cascade do |t|
@@ -92,4 +94,12 @@ ActiveRecord::Schema.define(version: 20150322223811) do
     t.string   "password_digest"
   end
 
+<<<<<<< HEAD
+=======
+  add_foreign_key "availabilities", "posts", name: "post_id"
+  add_foreign_key "messages", "posts", name: "post_id"
+  add_foreign_key "messages", "user_accounts", name: "user_id"
+  add_foreign_key "posts", "books", name: "book_id"
+  add_foreign_key "posts", "user_accounts", name: "user_account_id"
+>>>>>>> 981dceb96895d3bc893e6407ad57053d2dd29e28
 end
