@@ -11,11 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322235706) do
+ActiveRecord::Schema.define(version: 20150324002329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "authors", force: :cascade do |t|
     t.string   "au_lname"
@@ -76,6 +75,19 @@ ActiveRecord::Schema.define(version: 20150322235706) do
     t.integer  "book_id"
   end
 
+  create_table "searches", force: :cascade do |t|
+    t.string   "title"
+    t.string   "isbn"
+    t.string   "volume"
+    t.string   "edition"
+    t.string   "au_first"
+    t.string   "au_last"
+    t.string   "course"
+    t.string   "department"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "user_accounts", force: :cascade do |t|
     t.string   "email"
     t.boolean  "isAdmin?"
@@ -84,12 +96,8 @@ ActiveRecord::Schema.define(version: 20150322235706) do
     t.string   "password_digest"
   end
 
-  add_foreign_key "availabilities", "posts", name: "availabilities_post_id_fk"
   add_foreign_key "availabilities", "posts", name: "post_id"
-  add_foreign_key "messages", "posts", name: "messages_post_id_fk"
   add_foreign_key "messages", "posts", name: "post_id"
-  add_foreign_key "messages", "user_accounts", name: "messages_user_account_id_fk"
   add_foreign_key "messages", "user_accounts", name: "user_id"
   add_foreign_key "posts", "books", name: "book_id"
-  add_foreign_key "posts", "books", name: "posts_books_id_fk"
 end

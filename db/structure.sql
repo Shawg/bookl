@@ -258,6 +258,44 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: searches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE searches (
+    id integer NOT NULL,
+    title character varying,
+    isbn character varying,
+    volume character varying,
+    edition character varying,
+    au_first character varying,
+    au_last character varying,
+    course character varying,
+    department character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE searches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE searches_id_seq OWNED BY searches.id;
+
+
+--
 -- Name: user_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -336,6 +374,13 @@ ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY searches ALTER COLUMN id SET DEFAULT nextval('searches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY user_accounts ALTER COLUMN id SET DEFAULT nextval('user_accounts_id_seq'::regclass);
 
 
@@ -388,6 +433,14 @@ ALTER TABLE ONLY posts
 
 
 --
+-- Name: searches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY searches
+    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -403,14 +456,6 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
--- Name: availabilities_post_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY availabilities
-    ADD CONSTRAINT availabilities_post_id_fk FOREIGN KEY (post_id) REFERENCES posts(id);
-
-
---
 -- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -419,22 +464,6 @@ ALTER TABLE ONLY posts
 
 
 --
--- Name: messages_post_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT messages_post_id_fk FOREIGN KEY (post_id) REFERENCES posts(id);
-
-
---
--- Name: messages_user_account_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY messages
-    ADD CONSTRAINT messages_user_account_id_fk FOREIGN KEY (user_account_id) REFERENCES user_accounts(id);
-
-
---
 -- Name: post_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -448,14 +477,6 @@ ALTER TABLE ONLY messages
 
 ALTER TABLE ONLY availabilities
     ADD CONSTRAINT post_id FOREIGN KEY (post_id) REFERENCES posts(id);
-
-
---
--- Name: posts_books_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY posts
-    ADD CONSTRAINT posts_books_id_fk FOREIGN KEY (book_id) REFERENCES books(id);
 
 
 --
@@ -472,7 +493,6 @@ ALTER TABLE ONLY messages
 
 SET search_path TO "$user",public;
 
->>>>>>> db_associations/constraints
 INSERT INTO schema_migrations (version) VALUES ('20150305212052');
 
 INSERT INTO schema_migrations (version) VALUES ('20150314051955');
@@ -481,8 +501,6 @@ INSERT INTO schema_migrations (version) VALUES ('20150314052806');
 
 INSERT INTO schema_migrations (version) VALUES ('20150314053709');
 
-<<<<<<< HEAD
-=======
 INSERT INTO schema_migrations (version) VALUES ('20150314231932');
 
 INSERT INTO schema_migrations (version) VALUES ('20150314233753');
@@ -509,10 +527,13 @@ INSERT INTO schema_migrations (version) VALUES ('20150320194855');
 
 INSERT INTO schema_migrations (version) VALUES ('20150320194944');
 
+INSERT INTO schema_migrations (version) VALUES ('20150322203751');
+
 INSERT INTO schema_migrations (version) VALUES ('20150322223811');
 
-INSERT INTO schema_migrations (version) VALUES ('20150322224416');
-
-INSERT INTO schema_migrations (version) VALUES ('20150322225346');
-
 INSERT INTO schema_migrations (version) VALUES ('20150322235706');
+
+INSERT INTO schema_migrations (version) VALUES ('20150324001641');
+
+INSERT INTO schema_migrations (version) VALUES ('20150324002329');
+
