@@ -76,8 +76,9 @@ Post.destroy_all
 
 	user = UserAccount.create(    #syntax????? 
 		:email => "#{Internet.free_email}",
-		:isAdmin? => admin[ rand(admin.length)]
-		#ignoring password digest for now
+		:isAdmin? => admin[ rand(admin.length)],
+		:password => "password",
+		:password_confirmation => "password"
 		)
 	
 	puts user.inspect
