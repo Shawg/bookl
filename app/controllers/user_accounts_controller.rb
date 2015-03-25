@@ -1,6 +1,6 @@
 class UserAccountsController < ApplicationController
   before_action :set_user_account, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: :destroy
+  before_action :admin_user, only: [:destroy, :adminView]
 
   # GET /user_accounts
   # GET /user_accounts.json
@@ -10,9 +10,10 @@ class UserAccountsController < ApplicationController
 
   # GET /user_accounts/1
   # GET /user_accounts/1.json
-  def show
-  end
+  def show ()
 
+  end
+ 
   # GET /user_accounts/new
   def new
     @user_account = UserAccount.new
@@ -23,7 +24,7 @@ class UserAccountsController < ApplicationController
   end
 
   def adminView
-    show
+    @user_accounts = UserAccount.all
     # @user_account = UserAccount.find(params[:id])
   end
 
@@ -76,7 +77,11 @@ class UserAccountsController < ApplicationController
     end
 
     def admin_user
-      redirect_to(root_url) unless current_user_account.isAdmin?
+      if current_user_account.nil? 
+        redirect_to(root_url) 
+      else
+        redirect_to(root_url) unless current_user_account.isAdmin?
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

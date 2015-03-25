@@ -20,20 +20,20 @@ Post.destroy_all
 numUser = 20
 
 UserAccount.create(    #syntax????? 
-    :email => "geoff@shaw.com",
+    :email => "geoff@email.com",
     :isAdmin? => true,
     :password => "password",
     :password_confirmation => "password"
     )
 
 UserAccount.create(    #syntax????? 
-    :email => "eli@shaw.com",
+    :email => "eli@email.com",
     :isAdmin? => true,
     :password => "password",
     :password_confirmation => "password"
     )
 UserAccount.create(    #syntax????? 
-    :email => "mike@shaw.com",
+    :email => "mike@email.com",
     :isAdmin? => true,
     :password => "password",
     :password_confirmation => "password"
@@ -85,7 +85,7 @@ end
 
   message = Message.create(
       :content => "#{Lorem.paragraph(5)}",   # max 5 sentances
-      :user_account_id => 1 + (n%numUser),
+      :user_account_id => 4 + (n%numUser),
       :post_id => post.id  
     )
   puts message.inspect
