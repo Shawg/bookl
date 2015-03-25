@@ -1,15 +1,16 @@
 development:
   adapter: postgresql
-  encoding: unicode
-  database: store_development
+  database: bookl_development
   pool: 5
-  username: 
-  password:
+  host: localhost
+  username: postgres
+  password: password
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: store_test
+  database: bookl_test
+  host: localhost
   pool: 5
-  username: 
-  password:
+  username: postgres
+  password: password
