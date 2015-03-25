@@ -225,7 +225,8 @@ CREATE TABLE posts (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    book_id integer
+    book_id integer,
+    user_account_id integer
 );
 
 
@@ -467,7 +468,7 @@ ALTER TABLE ONLY posts
 -- Name: post_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY messages
+ALTER TABLE ONLY availabilities
     ADD CONSTRAINT post_id FOREIGN KEY (post_id) REFERENCES posts(id);
 
 
@@ -475,8 +476,16 @@ ALTER TABLE ONLY messages
 -- Name: post_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY availabilities
+ALTER TABLE ONLY messages
     ADD CONSTRAINT post_id FOREIGN KEY (post_id) REFERENCES posts(id);
+
+
+--
+-- Name: user_account_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY posts
+    ADD CONSTRAINT user_account_id FOREIGN KEY (user_account_id) REFERENCES user_accounts(id);
 
 
 --
@@ -531,9 +540,11 @@ INSERT INTO schema_migrations (version) VALUES ('20150322203751');
 
 INSERT INTO schema_migrations (version) VALUES ('20150322223811');
 
-INSERT INTO schema_migrations (version) VALUES ('20150322235706');
-
 INSERT INTO schema_migrations (version) VALUES ('20150324001641');
 
 INSERT INTO schema_migrations (version) VALUES ('20150324002329');
+
+INSERT INTO schema_migrations (version) VALUES ('20150324230010');
+
+INSERT INTO schema_migrations (version) VALUES ('20150324230134');
 

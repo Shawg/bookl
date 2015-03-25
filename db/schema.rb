@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20150324230134) do
     t.string   "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "post_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -60,8 +61,10 @@ ActiveRecord::Schema.define(version: 20150324230134) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "content"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "post_id"
+    t.integer  "user_account_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -94,12 +97,9 @@ ActiveRecord::Schema.define(version: 20150324230134) do
     t.string   "password_digest"
   end
 
-<<<<<<< HEAD
-=======
   add_foreign_key "availabilities", "posts", name: "post_id"
   add_foreign_key "messages", "posts", name: "post_id"
   add_foreign_key "messages", "user_accounts", name: "user_id"
   add_foreign_key "posts", "books", name: "book_id"
   add_foreign_key "posts", "user_accounts", name: "user_account_id"
->>>>>>> 981dceb96895d3bc893e6407ad57053d2dd29e28
 end
