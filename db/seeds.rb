@@ -19,12 +19,33 @@ Post.destroy_all
 
 numUser = 20
 
+UserAccount.create(    #syntax????? 
+    :email => "geoff@shaw.com",
+    :isAdmin? => true,
+    :password => "password",
+    :password_confirmation => "password"
+    )
+
+UserAccount.create(    #syntax????? 
+    :email => "eli@shaw.com",
+    :isAdmin? => true,
+    :password => "password",
+    :password_confirmation => "password"
+    )
+UserAccount.create(    #syntax????? 
+    :email => "mike@shaw.com",
+    :isAdmin? => true,
+    :password => "password",
+    :password_confirmation => "password"
+    )
+
+
 # populating users
 numUser.times do 
   admin = %w(true false)
   user = UserAccount.create(    #syntax????? 
     :email => "#{Internet.free_email}",
-    :isAdmin? => admin[ rand(admin.length)],
+    :isAdmin? => false,
     :password => "password",
     :password_confirmation => "password"
     )

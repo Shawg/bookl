@@ -1,5 +1,6 @@
 class UserAccountsController < ApplicationController
   before_action :set_user_account, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, only: :destroy
 
   # GET /user_accounts
   # GET /user_accounts.json
@@ -19,6 +20,11 @@ class UserAccountsController < ApplicationController
 
   # GET /user_accounts/1/edit
   def edit
+  end
+
+  def adminView
+    show
+    # @user_account = UserAccount.find(params[:id])
   end
 
   # POST /user_accounts
@@ -67,6 +73,10 @@ class UserAccountsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user_account
       @user_account = UserAccount.find(params[:id])
+    end
+
+    def admin_user
+      redirect_to(root_url) unless current_user_account.isAdmin?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
