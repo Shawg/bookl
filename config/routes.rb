@@ -4,13 +4,15 @@ Rails.application.routes.draw do
 
   get 'user_accounts/index'
   get 'signup' => 'user_accounts#new'
-  
+
+  get 'books/index'  
   get  'static_pages/about'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
   resources :user_accounts
   resources :posts
+  resources :books
   
 
   # The priority is based upon order of creation: first created -> highest priority.
