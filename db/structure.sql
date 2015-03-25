@@ -259,44 +259,6 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: searches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE searches (
-    id integer NOT NULL,
-    title character varying,
-    isbn character varying,
-    volume character varying,
-    edition character varying,
-    au_first character varying,
-    au_last character varying,
-    course character varying,
-    department character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: searches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE searches_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE searches_id_seq OWNED BY searches.id;
-
-
---
 -- Name: user_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -375,13 +337,6 @@ ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY searches ALTER COLUMN id SET DEFAULT nextval('searches_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY user_accounts ALTER COLUMN id SET DEFAULT nextval('user_accounts_id_seq'::regclass);
 
 
@@ -431,14 +386,6 @@ ALTER TABLE ONLY messages
 
 ALTER TABLE ONLY posts
     ADD CONSTRAINT posts_pkey PRIMARY KEY (id);
-
-
---
--- Name: searches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY searches
-    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
 
 
 --

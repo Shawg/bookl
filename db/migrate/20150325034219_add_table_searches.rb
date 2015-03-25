@@ -1,4 +1,4 @@
-class CreateSearches < ActiveRecord::Migration
+class AddTableSearches < ActiveRecord::Migration
   def change
     create_table :searches do |t|
       t.string :title

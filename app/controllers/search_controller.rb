@@ -11,8 +11,10 @@ class SearchController < ApplicationController
 		respond_to do |format|
 			if @search.save
 				format.html { redirect_to @search, notice: 'search was successfully created.' }
+				format.json { render :show, status: :created, location: @search }
 			else
 				format.html { render :new, notice: 'search was not successfully created.' }
+				format.json { render json: @search.errors, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -27,8 +29,7 @@ class SearchController < ApplicationController
     end
 
 	def search_params
-		params.require(:search).permit(:title, :isbn, :volume, :edition,
-			:au_first, :au_last, :course, :department)
+		params.require(:search).permit(:title, :isbn, :volume, :edition, :au_first, :au_last, :course, :department)
 	end
 
 end

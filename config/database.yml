@@ -3,8 +3,8 @@ development:
   database: bookl_development
   pool: 5
   host: localhost
-  username: postgres
-  password: password
+  username:
+  password:
 
 test:
   adapter: postgresql
@@ -12,5 +12,5 @@ test:
   database: bookl_test
   host: localhost
   pool: 5
-  username: postgres
-  password: password
+  username:
+  password:
