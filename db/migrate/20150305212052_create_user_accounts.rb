@@ -3,7 +3,7 @@ class CreateUserAccounts < ActiveRecord::Migration
     create_table :user_accounts do |t|
       t.string :email
       t.string :password
-      t.boolean :isAdmin?
+      t.boolean :isAdmin?, :default => false
 
       t.timestamps null: false
     end

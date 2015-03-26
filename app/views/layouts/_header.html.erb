@@ -18,6 +18,9 @@
         <% else %>
           <li><%= link_to "Log in", login_path %></li>
         <% end %>
+        <% if admin %>
+          <li><%= link_to "Admin View", admin_path %></li>          
+        <% end %>
       </ul>
     </div>
   </div>
