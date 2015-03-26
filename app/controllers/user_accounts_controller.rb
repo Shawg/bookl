@@ -17,6 +17,19 @@ class UserAccountsController < ApplicationController
     @user_account = UserAccount.new
   end
 
+  def admin
+    sql = "SELECT avg(p.price) 
+           FROM posts p"
+    @average_price = ActiveRecord::Base.connection.execute(sql)
+
+    sql = "SELECT ua.id, b.volume, b.edition, b.title
+          FROM books b, posts p, user_accounts ua
+          WHERE p.book_id = b.id AND p.user_account_id = ua.id "
+    @user_history = ActiveRecord::Base.connection.execute(sql)
+
+
+  end
+
   # GET /user_accounts/1/edit
   def edit
   end
