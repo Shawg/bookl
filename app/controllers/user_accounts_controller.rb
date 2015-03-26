@@ -20,8 +20,17 @@ class UserAccountsController < ApplicationController
  
   end
 
-  def admin
-    sql = "SELECT avg(p.price)
+  # GET /user_accounts/1/edit
+  def edit
+  end
+  
+
+  def admin_view
+    @user_accounts = UserAccount.all
+    @posts = Post.all
+    # @user_account = UserAccount.find(params[:id])
+
+        sql = "SELECT avg(p.price)
            FROM posts p"
     @average_price = ActiveRecord::Base.connection.execute(sql)
 
@@ -38,6 +47,7 @@ class UserAccountsController < ApplicationController
           FROM user_accounts"
     @number_of_users = ActiveRecord::Base.connection.execute(sql)
 
+
     # sql = "SELECT ua.id, ua.email, max(p.id)
     #       FROM posts p, user_accounts ua
     #       WHERE p.id AND ua.id IN
@@ -46,18 +56,6 @@ class UserAccountsController < ApplicationController
     #         WHERE p.book_id = b.id AND p.user_account_id = ua.id
     #           GROUP BY ua.id)"
     # @most_active_user = ActiveRecord::Base.connection.execute(sql)
-
-
-  end
-
-  # GET /user_accounts/1/edit
-  def edit
-  end
-
-  def admin_view
-    @user_accounts = UserAccount.all
-    @posts = Post.all
-    # @user_account = UserAccount.find(params[:id])
   end
 
   # POST /user_accounts
