@@ -74,9 +74,6 @@ end
 
 
 
-
-
-
   # Author
   author = Author.create(
     :au_lname => "#{Name.first_name}",

@@ -1,13 +1,32 @@
 class Search < ActiveRecord::Base
-	def posts
-		@posts ||= find_posts
+
+	has_many :posts
+
+	def self.posts(search)
+		@search = search
+		@sql = "SELECT DISTINCT books.title 
+			   FROM posts
+			   INNER JOIN books
+			   ON posts.book_id = books.id
+			   INNER JOIN authors_books
+			   ON authors_books.book_id = books.id"
+
+		@results = self.find_conditions
 	end
 
-	def find_posts
-		Post.find(:all)
-	# 	Book.find_by_sql ["SELECT title, au_lname, au_fname
-	# 					   FROM books B, authors A, courses C
-	# 					   WHERE A.au_lname = :au_lname AND A.au_fname = :au_fname AND
-	# 					   		 B.title", { :user_id => user_id }]
+	def self.find_conditions
+		unless @search.title.blank?
+			@sql = @sql + " books.title = ?", @search.title
+			puts @sql
+		end
+		self.find_posts
 	end
+
+
+
+	def self.find_posts 
+		Post.find_by_sql(@sql)
+	end
+
 end
+

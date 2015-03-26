@@ -259,6 +259,44 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: searches; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE searches (
+    id integer NOT NULL,
+    title character varying,
+    isbn character varying,
+    volume character varying,
+    edition character varying,
+    au_first character varying,
+    au_last character varying,
+    course character varying,
+    department character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE searches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: searches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE searches_id_seq OWNED BY searches.id;
+
+
+--
 -- Name: user_accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -337,6 +375,13 @@ ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regcl
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY searches ALTER COLUMN id SET DEFAULT nextval('searches_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY user_accounts ALTER COLUMN id SET DEFAULT nextval('user_accounts_id_seq'::regclass);
 
 
@@ -389,6 +434,14 @@ ALTER TABLE ONLY posts
 
 
 --
+-- Name: searches_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY searches
+    ADD CONSTRAINT searches_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: user_accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -404,11 +457,43 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 
 
 --
+-- Name: author_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY authors_books
+    ADD CONSTRAINT author_id FOREIGN KEY (author_id) REFERENCES authors(id);
+
+
+--
 -- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY posts
     ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
+
+
+--
+-- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY authors_books
+    ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
+
+
+--
+-- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY books_courses
+    ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
+
+
+--
+-- Name: course_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY books_courses
+    ADD CONSTRAINT course_id FOREIGN KEY (course_id) REFERENCES courses(id);
 
 
 --
@@ -494,4 +579,8 @@ INSERT INTO schema_migrations (version) VALUES ('20150324002329');
 INSERT INTO schema_migrations (version) VALUES ('20150324230010');
 
 INSERT INTO schema_migrations (version) VALUES ('20150324230134');
+
+INSERT INTO schema_migrations (version) VALUES ('20150325034219');
+
+INSERT INTO schema_migrations (version) VALUES ('20150326030242');
 

@@ -9,8 +9,8 @@ Rails.application.routes.draw do
   get 'user_accounts/edit'
   get 'user_accounts/show'
 
-  get 'search/new'
-  get 'search/show'
+  get 'searches/new'
+  get 'searches/show'
 
   get 'signup' => 'user_accounts#new'
   get 'books/index'  
