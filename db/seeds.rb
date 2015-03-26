@@ -15,7 +15,9 @@ Book.destroy_all
 Course.destroy_all
 Message.destroy_all
 Post.destroy_all
-Post.destroy_all
+#BookCourse.destroy_all
+#AuthorBook.destroy_all
+
 
 numUser = 20
 
@@ -31,16 +33,46 @@ numUser.times do
   puts user.inspect
 end
 
-# Populating Books
-(numUser).times do
+(numUser).times do |n|
+  # Populating Books
   book = Book.create(
     :ISBN => "#{Code.isbn}",
     :volume => "#{App.version}",
     :edition => "#{Number.digit}",
     :title => "#{App.name}"
-    )
+  )
+  # Author
+  author = Author.create(
+    :au_lname => "#{Name.first_name}",
+    :au_fname => "#{Name.last_name}"
+  )
+  # Author_Book
+  author_book = AuthorBook.create(
+    :book_id => book.id,
+    :author_id => author.id
+  )
+  
+  puts author.inspect
   puts book.inspect
+  puts author_book.inspect
 end  
+
+
+(numUser).times do |n|
+
+  # Course
+  course = Course.create(
+    :department => "#{Commerce.department(3)}",  # max 3 departments 
+    :courseNumber => "#{Number.number(4)}"    # max 4 course numbers 
+  )
+
+  # Book_Course
+  book_course = BookCourse.create(
+    :book_id => rand(numUser),
+    :course_id => course.id
+  )
+
+end
 
 
 # populating posts
@@ -68,28 +100,4 @@ end
       :post_id => post.id  
     )
   puts message.inspect
-
-
 end
-
-
-
-  # Author
-  author = Author.create(
-    :au_lname => "#{Name.first_name}",
-    :au_fname => "#{Name.last_name}"
-    )
-  
-  puts author.inspect
-
-  # Availability 
-  
-
-  # Course
-  course = Course.create(
-    :department => "#{Commerce.department(3)}",  # max 3 departments 
-    :courseNumber => "#{Number.number(4)}"    # max 4 departments 
-    )
-  
-  puts course.inspect
-

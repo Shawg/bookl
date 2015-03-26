@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'static_pages#home'
-  get 'static_pages/about'
   get  'static_pages/about'
 
   get 'user_accounts/index'
@@ -10,11 +9,10 @@ Rails.application.routes.draw do
   get 'user_accounts/show'
 
   get 'searches/new'
-  get 'searches/show'
 
   get 'signup' => 'user_accounts#new'
   get 'books/index'  
-  get  'static_pages/about'
+  get 'static_pages/about'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

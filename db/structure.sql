@@ -468,14 +468,6 @@ ALTER TABLE ONLY authors_books
 -- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY posts
-    ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
-
-
---
--- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY authors_books
     ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
 
@@ -485,6 +477,14 @@ ALTER TABLE ONLY authors_books
 --
 
 ALTER TABLE ONLY books_courses
+    ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
+
+
+--
+-- Name: book_id; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY posts
     ADD CONSTRAINT book_id FOREIGN KEY (book_id) REFERENCES books(id);
 
 

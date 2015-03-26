@@ -13,7 +13,7 @@ class SearchesController < ApplicationController
 		else
 			render :action => 'new'
 		end
-	end 
+	end
 
 	def show
 		@results = Search.posts(@search)
