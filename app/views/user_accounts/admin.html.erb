@@ -17,12 +17,45 @@
 	    		<% end %>
 		    </tbody>
 	    </table>
+   		
+   		<table class="table">
+		   <thead>
+			   <tr>
+			    <th>Total Number of Posts Todate</th>
+			    <th colspan="3"></th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <% @number_of_posts.each do |number_of_posts| %>
+			    <tr>
+			      <td><%= number_of_posts["count"] %></td> 
+			    </tr>
+	    		<% end %>
+		    </tbody>
+	    </table>
+
+   		<table class="table">
+		   <thead>
+			   <tr>
+			    <th>Total Number of Users Todate</th>
+			    <th colspan="3"></th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <% @number_of_users.each do |number_of_users| %>
+			    <tr>
+			      <td><%= number_of_users["count"] %></td> 
+			    </tr>
+	    		<% end %>
+		    </tbody>
+	    </table>
+	   
 	   <table class="table table-condensed">
 		   <h2 class="text-center">User History</h2>
 		   <thead>
 			   <tr>
+			   	<th>Account ID</th>
 			   	<th>Book Title</th>
-			    <th>Account ID</th>
 			    <th>Book Volume</th>
 			    <th>Book Editition</th>
 			    <th colspan="3"></th>
@@ -31,12 +64,31 @@
 	      	<tbody>
 			  <% @user_history.each do |user_history| %>
 			    <tr>
-			      <td><%= user_history["title"] %></td> 
-			      <td><%= user_history["id"] %></td> 
-			      <td><%= user_history["volume"] %></td> 
-			      <td><%= user_history["edition"] %></td> 
+			    	<td><%= user_history["id"] %></td> 
+			    	<td><%= user_history["title"] %></td> 
+			    	<td><%= user_history["volume"] %></td> 
+			    	<td><%= user_history["edition"] %></td> 
 			    </tr>
 	    	  <% end %>	
 		    </tbody>
 		</table>
+
+<!-- Nested Aggregation Query-->
+<% if false %>
+   		<table class="table">
+		   <thead>
+			   <tr>
+			    <th>Most Active User</th>
+			    <th colspan="3"></th>
+			  </tr>
+		  </thead>
+		  <tbody>
+			  <% @most_active_user.each do |most_active_user| %>
+			    <tr>
+			      <td><%= most_active_user %></td> 
+			    </tr>
+	    		<% end %>
+	    	</tbody>
+	    </table>
+<% end%>	    
 	</div>

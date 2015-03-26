@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'user_accounts/edit'
   get 'user_accounts/show'
   get 'admin' => 'user_accounts#admin_view'
+  get 'user_accounts/admin'
 
   get 'search/new'
   get 'search/show'

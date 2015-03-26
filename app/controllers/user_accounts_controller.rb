@@ -21,7 +21,7 @@ class UserAccountsController < ApplicationController
   end
 
   def admin
-    sql = "SELECT avg(p.price) 
+    sql = "SELECT avg(p.price)
            FROM posts p"
     @average_price = ActiveRecord::Base.connection.execute(sql)
 
@@ -29,6 +29,23 @@ class UserAccountsController < ApplicationController
           FROM books b, posts p, user_accounts ua
           WHERE p.book_id = b.id AND p.user_account_id = ua.id "
     @user_history = ActiveRecord::Base.connection.execute(sql)
+
+    sql = "SELECT count(*)
+          FROM posts"
+    @number_of_posts = ActiveRecord::Base.connection.execute(sql)
+
+    sql = "SELECT count(*)
+          FROM user_accounts"
+    @number_of_users = ActiveRecord::Base.connection.execute(sql)
+
+    # sql = "SELECT ua.id, ua.email, max(p.id)
+    #       FROM posts p, user_accounts ua
+    #       WHERE p.id AND ua.id IN
+    #         (SELECT ua.id, count(p.id)
+    #         FROM books b, posts p, user_accounts ua
+    #         WHERE p.book_id = b.id AND p.user_account_id = ua.id
+    #           GROUP BY ua.id)"
+    # @most_active_user = ActiveRecord::Base.connection.execute(sql)
 
 
   end
