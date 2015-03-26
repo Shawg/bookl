@@ -17,14 +17,16 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/new
   def new
     @user_account = UserAccount.new
+ 
   end
 
   # GET /user_accounts/1/edit
   def edit
   end
 
-  def adminView
+  def admin_view
     @user_accounts = UserAccount.all
+    @posts = Post.all
     # @user_account = UserAccount.find(params[:id])
   end
 
@@ -65,7 +67,7 @@ class UserAccountsController < ApplicationController
   def destroy
     @user_account.destroy
     respond_to do |format|
-      format.html { redirect_to user_accounts_url, notice: 'User account was successfully destroyed.' }
+      format.html { redirect_to 'user_account/adminView', notice: 'User account was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
