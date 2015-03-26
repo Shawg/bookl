@@ -15,4 +15,10 @@ module SessionsHelper
 	def logged_in?
 		!current_user_account.nil?
 	end
+
+	def admin
+		if logged_in?
+			UserAccount.find_by(id: session[:user_account_id]).isAdmin?
+		end
+	end
 end
