@@ -1,0 +1,37 @@
+<div class="results_container">
+  <div class="results">
+  	<div class="row">
+      <div class="col-md-1"></div>
+      <div class="col-md-1"><h3>Title</h3></div>
+      <div class="col-md-1"><h3>First</h3></div>
+      <div class="col-md-1"><h3>Last<h3></div>
+      <div class="col-md-6"><h3>Description</h3></div>
+      <div class="col-md-1"><h3>Price</h3></div>
+      <div class="col-md-1"><h3>Link</h3></div>
+	  </div>
+
+    <% @results.each do |s| %>
+    	<div class="row">
+    		<div class="col-md-1"></div>
+	      <div class="col-md-1">
+	      	<%= s.title %>
+	      </div>
+	      <div class="col-md-1">
+	      	<%= s.au_fname %>
+	      </div>
+	      <div class="col-md-1">
+	      	<%= s.au_lname %>
+	      </div>
+	      <div class="col-md-6">
+	      	<%= s.description %>
+	      </div>
+	      <div class="col-md-1">
+	      	<%= s.price %>
+	     </div>
+	     <div class="col-md-1">
+	      	<%= link_to "Show", s %>
+	     </div>
+	   </div>
+    <% end %>
+	</div>
+</div>

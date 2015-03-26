@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325034219) do
+ActiveRecord::Schema.define(version: 20150326030242) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,7 +97,11 @@ ActiveRecord::Schema.define(version: 20150325034219) do
     t.string   "password_digest"
   end
 
+  add_foreign_key "authors_books", "authors", name: "author_id"
+  add_foreign_key "authors_books", "books", name: "book_id"
   add_foreign_key "availabilities", "posts", name: "post_id"
+  add_foreign_key "books_courses", "books", name: "book_id"
+  add_foreign_key "books_courses", "courses", name: "course_id"
   add_foreign_key "messages", "posts", name: "post_id"
   add_foreign_key "messages", "user_accounts", name: "user_id"
   add_foreign_key "posts", "books", name: "book_id"

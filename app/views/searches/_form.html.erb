@@ -1,0 +1,45 @@
+<div class = "search_container">
+	<%= form_for(@search) do |s| %> 
+		<h3> Book </h3>
+
+		<div class="field">
+			<%= s.label :title %><br>
+			<%= s.text_field :title %>
+		</div>
+		<div class="field">
+			<%= s.label :isbn %><br>
+			<%= s.text_field :isbn %>
+		</div>
+		<div class="field">
+			<%= s.label :volume %><br>
+			<%= s.text_field :volume %>
+		</div>
+		<div class="field">
+			<%= s.label :edition %><br>
+			<%= s.text_field :edition %>
+		</div>
+
+		<h3> Author </h3>
+		<div class="field">
+			<%= s.label :au_first %><br>
+			<%= s.text_field :au_first %>
+		</div>
+		<div class="field">
+			<%= s.label :au_last %><br>
+			<%= s.text_field :au_last %>
+		</div>
+
+		<h3> Course </h3>
+		<div class="field">
+			<%= s.label :course %><br>
+			<%= s.text_field :course %>
+		</div>
+		<div class="field">
+			<%= s.label :department %><br>
+			<%= s.text_field :department %>
+		</div>
+		<div class="actions">
+			<%= s.submit "" %>
+		</div>
+	<% end %>
+</div>
