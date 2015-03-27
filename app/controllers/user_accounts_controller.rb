@@ -1,6 +1,6 @@
 class UserAccountsController < ApplicationController
   before_action :set_user_account, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:destroy, :adminView]
+  before_action :admin_user, only: [:destroy, :admin_view]
 
   # GET /user_accounts
   # GET /user_accounts.json

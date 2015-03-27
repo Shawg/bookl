@@ -2,64 +2,42 @@
 <div class="jumbotron">
   <div class="container">
     <h1 class="text-center">Start Searching For Books Now!</h1>
-      <div class="row">
-        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-        </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-          <a class="btn btn-primary btn-lg btn-block" href="/searches/new" role="button">Search!</a>
-        </div>
+    <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
       </div>
-    </p>
-  </div>
+      <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <a class="btn btn-primary btn-lg btn-block" href="/searches/new" role="button">Search!</a>
+      </div>
+    </div>
+  </p>
 </div>
-    <!-- Carousel
-    ================================================== -->
-<!--     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner" role="listbox">
-        <div class="item active">
-          <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-      # <%= image_tag("books.jpg", :class=>"img-responsive") %>
-              <h1>Start Searching For Books Now!</h1>
-              <form>
-              <a class="btn btn-lg btn-primary" href="/searches/new" role="button">Search!</a>
-              </form>
-            </div>
-          </div>
-        </div>
-    </div><!-- /.carousel -->
+</div>
+
+<div class="container marketing">
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-6">
+     <%= image_tag("post.jpg", :alt => "rss feed", :class=>"img-circle center-block", :style=>"width: 250px; height: 250px;") %>
+     <h2 class="text-center">Post Books</h2>
+     <p class="text-center">Do you hate getting $15 from the book store for a book you payed $150 for? BookL is for you! Get what you deserve for your books.</p>
+     <p><a class="btn btn-primary btn-block" href="/posts/new" role="button">Post &raquo;</a></p> 
+   </div><!-- /.col-lg-4 -->
+   <div class="col-lg-6">
+    <%= image_tag("buy.jpg", :alt => "rss feed", :class=>"img-circle center-block", :style=>"width: 250px; height: 250px;") %>
+    <h2 class="text-center">Buy Books</h2>
+    <p class="text-center">Why pay a ludacris amount for a book that you are going to use for a short amount of time? Browse our selction of new an used books catered to your university.</p>
+    <p><a class="btn btn-primary btn-block" href="/posts" role="button">Browse Posts &raquo;</a></p>
+  </div><!-- /.col-lg-4 -->
+</div><!-- /.row -->
 
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+<!-- FOOTER -->
+<footer>
+  <p class="pull-right"><a href="#">Back to top</a></p>
+  <p>&copy; 2015 BookL &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
 
-    <div class="container marketing">
-
-      <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-6">
-           <%= image_tag("post.jpg", :alt => "rss feed", :class=>"img-circle center-block", :style=>"width: 250px; height: 250px;") %>
-            <h2 class="text-center">Post Books</h2>
-            <p class="text-center">Do you hate getting $15 from the book store for a book you payed $150 for? BookL is for you! Get what you deserve for your books.</p>
-            <p><a class="btn btn-primary btn-block" href="/posts/new" role="button">Post &raquo;</a></p> 
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-6">
-            <%= image_tag("buy.jpg", :alt => "rss feed", :class=>"img-circle center-block", :style=>"width: 250px; height: 250px;") %>
-            <h2 class="text-center">Buy Books</h2>
-            <p class="text-center">Why pay a ludacris amount for a book that you are going to use for a short amount of time? Browse our selction of new an used books catered to your university.</p>
-            <p><a class="btn btn-primary btn-block" href="/posts" role="button">Browse Posts &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-
-
-      <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2015 BookL &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
-
-    </div><!-- /.container -->
+</div><!-- /.container -->
 
 </html>
