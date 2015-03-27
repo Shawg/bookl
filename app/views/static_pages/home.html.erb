@@ -1,13 +1,26 @@
 <% provide(:title, 'Home') %>
-
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="text-center">Start Searching For Books Now!</h1>
+      <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <a class="btn btn-primary btn-lg btn-block" href="/searches/new" role="button">Search!</a>
+        </div>
+      </div>
+    </p>
+  </div>
+</div>
     <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!--     <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" role="listbox">
         <div class="item active">
           <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
+      # <%= image_tag("books.jpg", :class=>"img-responsive") %>
               <h1>Start Searching For Books Now!</h1>
               <form>
               <a class="btn btn-default" href="/searches/new" role="button">Search!</a>
