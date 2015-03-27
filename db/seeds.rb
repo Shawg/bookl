@@ -15,8 +15,8 @@ Book.destroy_all
 Course.destroy_all
 Message.destroy_all
 Post.destroy_all
-#BookCourse.destroy_all
-#AuthorBook.destroy_all
+BookCourse.destroy_all
+AuthorBook.destroy_all
 
 
 numUser = 20
@@ -67,17 +67,18 @@ end
     :au_lname => "#{Name.first_name}",
     :au_fname => "#{Name.last_name}"
   )
-  # Author_Book
-  author_book = AuthorBook.create(
-    :book_id => book.id,
-    :author_id => author.id
-  )
   
   puts author.inspect
   puts book.inspect
-  puts author_book.inspect
 end  
 
+(numUser).times do |n|
+  # Author_Book
+    author_book = AuthorBook.create(
+      :book_id => 1 + rand(numUser - 1),
+      :author_id => 1 + rand(numUser - 1)
+    )
+end
 
 (numUser).times do |n|
 
@@ -89,7 +90,7 @@ end
 
   # Book_Course
   book_course = BookCourse.create(
-    :book_id => rand(numUser),
+    :book_id => 1 + rand(numUser - 1),
     :course_id => course.id
   )
 
