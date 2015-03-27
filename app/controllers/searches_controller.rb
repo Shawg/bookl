@@ -3,13 +3,15 @@ class SearchesController < ApplicationController
 
 	def new
 		@search = Search.new
+		@results = Search.posts(@search)
 	end
 
 	def create
 		@search = Search.new(search_params)
 		if @search.save
+			@results = Search.posts(@search)
 			flash[:notice] = "search was successfully saved"
-			redirect_to @search
+			render :partial => 'results', :object => @results
 		else
 			render :action => 'new'
 		end
