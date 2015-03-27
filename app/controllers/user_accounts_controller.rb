@@ -23,14 +23,15 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/1/edit
   def edit
   end
-  
+
 
   def admin_view
     @user_accounts = UserAccount.all
     @posts = Post.all
-    # @user_account = UserAccount.find(params[:id])
+    
+    @selectedUser = UserAccount.search(params[:email])
 
-        sql = "SELECT avg(p.price)
+    sql = "SELECT avg(p.price)
            FROM posts p"
     @average_price = ActiveRecord::Base.connection.execute(sql)
 

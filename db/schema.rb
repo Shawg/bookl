@@ -91,9 +91,9 @@ ActiveRecord::Schema.define(version: 20150327062631) do
 
   create_table "user_accounts", force: :cascade do |t|
     t.string   "email"
-    t.boolean  "isAdmin?",        default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "isAdmin?"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "password_digest"
   end
 

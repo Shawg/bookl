@@ -1,158 +1,193 @@
 <p id="notice"><%= notice %></p>
 
 <h1 class="text-center">Admin View</h1>
-  
-  <div class="container">
 
-      <table class="table">
-       <thead>
-         <tr>
-          <th>Average Book Price $</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @average_price.each do |average_price| %>
+<div class="container">
+
+  <h4>Find a User</h2>
+    <%= render "emailForm"%>
+    <% unless @selectedUser.nil? %>
+    <div class="row">
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <td>User ID</td>
+              <td>User Email</td>
+              <td>User Creation Time</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @selectedUser.first.id %></td>
+              <td><%= @selectedUser.first.email %></td>
+              <td><%= @selectedUser.first.created_at %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <%end%>
+
+<br>
+    <div class="row">
+      <div class="col-md-4">
+      <table class="table table-bordered">
+         <thead>
+           <tr>
+            <th>Average Book Price $</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @average_price.each do |average_price| %>
           <tr>
             <td><%= "$ " + average_price["avg"].first(5) %></td> 
           </tr>
           <% end %>
         </tbody>
       </table>
-      
-      <table class="table">
+
+    </div>
+    <div class="col-md-4">
+      <table class="table table-bordered">
        <thead>
          <tr>
           <th>Total Number of Posts Todate</th>
-          <th colspan="3"></th>
         </tr>
       </thead>
       <tbody>
         <% @number_of_posts.each do |number_of_posts| %>
-          <tr>
-            <td><%= number_of_posts["count"] %></td> 
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <table class="table">
-       <thead>
-         <tr>
-          <th>Total Number of Users Todate</th>
-          <th colspan="3"></th>
+        <tr>
+          <td><%= number_of_posts["count"] %></td> 
         </tr>
-      </thead>
-      <tbody>
-        <% @number_of_users.each do |number_of_users| %>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="col-md-4">
+    <table class="table table-bordered">
+     <thead>
+       <tr>
+        <th>Total Number of Users Todate</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @number_of_users.each do |number_of_users| %>
+      <tr>
+        <td><%= number_of_users["count"] %></td> 
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
+</div>
+
+
+
+
+<h2 class="text-center">User History</h2>
+<div class="scrollable">
+ <table class="table table-condensed">
+   <thead>
+     <tr>
+      <th>Account ID</th>
+      <th>Book Title</th>
+      <th>Book Volume</th>
+      <th>Book Editition</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user_history.each do |user_history| %>
+    <tr>
+      <td><%= user_history["id"] %></td> 
+      <td><%= user_history["title"] %></td> 
+      <td><%= user_history["volume"] %></td> 
+      <td><%= user_history["edition"] %></td> 
+    </tr>
+    <% end %> 
+  </tbody>
+</table>
+</div>
+
+
+<!-- Nested Aggregation Query-->
+<% if false %>
+<table class="table">
+ <thead>
+   <tr>
+    <th>Most Active User</th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+<tbody>
+  <% @most_active_user.each do |most_active_user| %>
+  <tr>
+    <td><%= most_active_user %></td> 
+  </tr>
+  <% end %>
+</tbody>
+</table>
+<% end%>  
+
+<div class="row">
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <h2 class="text-center">Accounts</h2>
+    <div class="scrollable">
+      <table class="table">
+        <thead>
           <tr>
-            <td><%= number_of_users["count"] %></td> 
+            <th>Email</th>
+            <th>Isadmin?</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>      
+        <tbody>
+          <% @user_accounts.each do |user_account| %>
+          <tr>
+            <td><%= user_account.email %></td>
+            <td><%= user_account.isAdmin? %></td>
+            <td><%= link_to 'Show', user_account %></td>
+            <td><%= link_to 'Edit', edit_user_account_path(user_account) %></td>
+            <td><%= link_to 'Destroy', user_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
           <% end %>
         </tbody>
       </table>
-     
-     <h2 class="text-center">User History</h2>
-       <div class="scrollable">
-         <table class="table table-condensed">
-           <thead>
-             <tr>
-              <th>Account ID</th>
-              <th>Book Title</th>
-              <th>Book Volume</th>
-              <th>Book Editition</th>
-              <th colspan="3"></th>
-            </tr>
-            </thead>
-              <tbody>
-            <% @user_history.each do |user_history| %>
-              <tr>
-                <td><%= user_history["id"] %></td> 
-                <td><%= user_history["title"] %></td> 
-                <td><%= user_history["volume"] %></td> 
-                <td><%= user_history["edition"] %></td> 
-              </tr>
-              <% end %> 
-            </tbody>
-        </table>
-      </div>
-
-
-    <!-- Nested Aggregation Query-->
-    <% if false %>
-          <table class="table">
-           <thead>
-             <tr>
-              <th>Most Active User</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @most_active_user.each do |most_active_user| %>
-              <tr>
-                <td><%= most_active_user %></td> 
-              </tr>
-              <% end %>
-            </tbody>
-          </table>
-    <% end%>  
-
-  <div class="row">
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center">Accounts</h2>
-      <div class="scrollable">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Email</th>
-              <th>Isadmin?</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>      
-          <tbody>
-            <% @user_accounts.each do |user_account| %>
-              <tr>
-                <td><%= user_account.email %></td>
-                <td><%= user_account.isAdmin? %></td>
-                <td><%= link_to 'Show', user_account %></td>
-                <td><%= link_to 'Edit', edit_user_account_path(user_account) %></td>
-                <td><%= link_to 'Destroy', user_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>    
-    </div>  
-    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center">Posts</h2>    
-      <div class="scrollable">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-              <th>Price</th>
-              <th>Description</th>
-              <th>User account</th>
-              <th>Book</th>
-              <th colspan="3"></th>
-            </tr>
-          </thead>      
-          <tbody>
-            <% @posts.each do |post| %>
-              <tr>
-                <td><%= post.price %></td>
-                <td><%= post.description %></td>
-                <td><%= post.user_account_id %></td>
-                <td><%= post.book_id %></td>
-                <td><%= link_to 'Show', post %></td>
-                <td><%= link_to 'Edit', edit_post_path(post) %></td>
-                <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>    
-      </div>
-    </div>  
-  </div>
+    </div>    
+  </div>  
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <h2 class="text-center">Posts</h2>    
+    <div class="scrollable">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th>Description</th>
+            <th>User account</th>
+            <th>Book</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>      
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <td><%= post.price %></td>
+            <td><%= post.description %></td>
+            <td><%= post.user_account_id %></td>
+            <td><%= post.book_id %></td>
+            <td><%= link_to 'Show', post %></td>
+            <td><%= link_to 'Edit', edit_post_path(post) %></td>
+            <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>    
+    </div>
+  </div>  
+</div>
 
 
 </div>
