@@ -1,0 +1,5 @@
+<%= form_tag("#", method: "get") do %>
+  <%= label_tag(:email, "Enter Email:") %>
+  <%= text_field_tag :email, params[:email] %>
+  <%= submit_tag("Search", :class => "btn btn-primary") %>
+<% end %>
