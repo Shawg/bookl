@@ -15,4 +15,12 @@ class UserAccount < ActiveRecord::Base
                                                   BCrypt::Engine.cost
     	BCrypt::Password.create(string, cost: cost)
   end
+
+  def self.search(search)
+    if search
+      UserAccount.find_by_sql ["SELECT *
+                              FROM user_accounts
+                              WHERE email like :email", {:email => search}]
+    end
+  end
 end

@@ -24,15 +24,15 @@ class Search < ActiveRecord::Base
 	end
 
 	def self.isbn_conditions
-		"%s books.isbn = %s" % [self.add_prefix, @search.isbn] unless @search.isbn.blank?
+		"%s books.isbn = '%s'" % [self.add_prefix, @search.isbn] unless @search.isbn.blank?
 	end
 
 	def self.volume_conditions
-		"%s books.volume = %s" % [self.add_prefix, @search.volume] unless @search.volume.blank?
+		"%s books.volume = '%s'" % [self.add_prefix, @search.volume] unless @search.volume.blank?
 	end
 
 	def self.edition_conditions
-		"%s books.edition = %s" % [self.add_prefix, @search.edition] unless @search.edition.blank?
+		"%s books.edition = '%s'" % [self.add_prefix, @search.edition] unless @search.edition.blank?
 	end
 
 	def self.first_conditions
@@ -44,11 +44,11 @@ class Search < ActiveRecord::Base
 	end
 
 	def self.course_conditions
-		"%s books.course LIKE '%s'" % [self.add_prefix, @search.course] unless @search.course.blank?
+		"%s courses.course_number = '%s'" % [self.add_prefix, @search.course] unless @search.course.blank?
 	end
 
 	def self.department_conditions
-		"%s books.department LIKE '%s'" % [self.add_prefix, @search.department] unless @search.department.blank?
+		"%s courses.department LIKE '%s'" % [self.add_prefix, @search.department] unless @search.department.blank?
 	end
 
 	def self.conditions_find
@@ -59,11 +59,17 @@ class Search < ActiveRecord::Base
 			   INNER JOIN authors_books
 			   ON authors_books.book_id = books.id
 			   INNER JOIN authors
-			   ON authors_books.author_id = authors.id"
+			   ON authors_books.author_id = authors.id
+			   INNER JOIN books_courses
+			   ON books_courses.book_id = books.id
+			   INNER JOIN courses
+			   ON books_courses.course_id = courses.id"
 
-		sql.concat(self.title_conditions.to_s).concat(self.isbn_conditions.to_s).concat(self.volume_conditions.to_s)
-		   .concat(self.edition_conditions.to_s).concat(self.first_conditions.to_s).concat(self.last_conditions.to_s)
-		   .concat(self.course_conditions.to_s).concat(self.department_conditions.to_s)
+		unless @search.nil?
+			sql.concat(self.title_conditions.to_s).concat(self.isbn_conditions.to_s).concat(self.volume_conditions.to_s)
+			   .concat(self.edition_conditions.to_s).concat(self.first_conditions.to_s).concat(self.last_conditions.to_s)
+			   .concat(self.course_conditions.to_s).concat(self.department_conditions.to_s)
+		end
 
 		Post.find_by_sql(sql)
 	end
