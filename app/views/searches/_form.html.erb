@@ -1,7 +1,6 @@
-<div class = "search_container">
-	<%= form_for(@search) do |s| %> 
+<%= form_for(@search) do |s| %> 
+	<div class = "search_container col-md-3">
 		<h3> Book </h3>
-
 		<div class="field">
 			<%= s.label :title %><br>
 			<%= s.text_field :title %>
@@ -10,6 +9,9 @@
 			<%= s.label :isbn %><br>
 			<%= s.text_field :isbn %>
 		</div>
+	</div>
+	<div class = "search_container col-md-3">
+		<h3> Book </h3>
 		<div class="field">
 			<%= s.label :volume %><br>
 			<%= s.text_field :volume %>
@@ -18,7 +20,9 @@
 			<%= s.label :edition %><br>
 			<%= s.text_field :edition %>
 		</div>
+	</div>
 
+	<div class = "search_container col-md-3">
 		<h3> Author </h3>
 		<div class="field">
 			<%= s.label :au_first %><br>
@@ -28,7 +32,9 @@
 			<%= s.label :au_last %><br>
 			<%= s.text_field :au_last %>
 		</div>
+	</div>
 
+	<div class = "search_container col-md-3">
 		<h3> Course </h3>
 		<div class="field">
 			<%= s.label :course %><br>
@@ -41,5 +47,5 @@
 		<div class="actions">
 			<%= s.submit %>
 		</div>
-	<% end %>
-</div>
+	</div>
+<% end %>

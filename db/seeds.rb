@@ -57,7 +57,7 @@ end
 (numUser).times do |n|
   # Populating Books
   book = Book.create(
-    :ISBN => "#{Code.isbn}",
+    :isbn => "#{Code.isbn}",
     :volume => "#{App.version}",
     :edition => "#{Number.digit}",
     :title => "#{App.name}"
@@ -85,7 +85,7 @@ end
   # Course
   course = Course.create(
     :department => "#{Commerce.department(3)}",  # max 3 departments 
-    :courseNumber => "#{Number.number(4)}"    # max 4 course numbers 
+    :course_number => "#{Number.number(4)}"    # max 4 course numbers 
   )
 
   # Book_Course
