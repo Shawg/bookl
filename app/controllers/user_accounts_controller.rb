@@ -28,12 +28,21 @@ class UserAccountsController < ApplicationController
   def admin_view
     @user_accounts = UserAccount.all
     @posts = Post.all
-    
-    @selectedUser = UserAccount.search(params[:email])
+    unless (UserAccount.search(params[:email]).blank?)
+      @selectedUser = UserAccount.search(params[:email])
+    end
 
     sql = "SELECT avg(p.price)
            FROM posts p"
     @average_price = ActiveRecord::Base.connection.execute(sql)
+
+    sql = "SELECT max(p.price) as max
+           FROM posts p"
+    @max_price = ActiveRecord::Base.connection.execute(sql)
+
+    sql = "SELECT min(p.price) as min
+           FROM posts p"
+    @min_price = ActiveRecord::Base.connection.execute(sql)
 
     sql = "SELECT ua.id, b.volume, b.edition, b.title
           FROM books b, posts p, user_accounts ua
@@ -49,14 +58,23 @@ class UserAccountsController < ApplicationController
     @number_of_users = ActiveRecord::Base.connection.execute(sql)
 
 
-    # sql = "SELECT ua.id, ua.email, max(p.id)
-    #       FROM posts p, user_accounts ua
-    #       WHERE p.id AND ua.id IN
-    #         (SELECT ua.id, count(p.id)
-    #         FROM books b, posts p, user_accounts ua
-    #         WHERE p.book_id = b.id AND p.user_account_id = ua.id
-    #           GROUP BY ua.id)"
-    # @most_active_user = ActiveRecord::Base.connection.execute(sql)
+    sql = "SELECT user_account_id, email, COUNT(user_account_id)
+          FROM posts INNER JOIN user_accounts ON user_account_id = user_accounts.id
+          GROUP BY user_account_id, email
+          HAVING COUNT(user_account_id) = (SELECT MAX(cnt)
+                                          FROM (SELECT user_account_id, COUNT(user_account_id) as cnt
+                                               FROM posts
+                                               GROUP BY user_account_id) uc
+                                          )"
+    @most_active_user = ActiveRecord::Base.connection.execute(sql)
+
+  # All users who have posted at least one book
+  sql = "SELECT   ua.id, ua.email ,COUNT(*)
+         FROM     user_accounts ua
+                  INNER JOIN posts p ON ua.id = p.user_account_id
+         GROUP BY ua.id
+         HAVING   COUNT(*) > 0"
+    @active_users = ActiveRecord::Base.connection.execute(sql)
   end
 
   # POST /user_accounts
