@@ -1,4 +1,9 @@
 <div class="container">
-	<p><%= current_user_account.email %></p>
 	<h1 class="text-center">The Book ID for <%= @book.title %> is <%= @book.id %></h1>
+	<h2 class="text-center">Click here to post your book, remember, you need to remember your book id!</h2>
+	<div class="row">
+		<div class="col-sm-4 col-md-4 col-md-offset-4">
+			<p><a class="btn btn-primary center-block" href="/posts/new" role="button">Post &raquo;</a></p> 
+		</div>
+	</div>
 </div>

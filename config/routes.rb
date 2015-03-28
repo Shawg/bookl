@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'user_accounts/edit'
   get 'user_accounts/show'
   get 'admin' => 'user_accounts#admin_view'
+  get 'not_logged_in' => "posts#not_logged_in"
 
   get 'searches/new'
 

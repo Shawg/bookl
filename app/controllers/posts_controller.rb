@@ -15,9 +15,12 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     if current_user_account.nil?
-      redirect_to(root_url)  
+      redirect_to(not_logged_in_url)  
     end
     @post = Post.new
+  end
+
+  def not_logged_in
   end
 
   # GET /posts/1/edit
