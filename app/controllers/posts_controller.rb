@@ -14,8 +14,10 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
+    if current_user_account.nil?
+      redirect_to(root_url)  
+    end
     @post = Post.new
-    @book = @post.build_books
   end
 
   # GET /posts/1/edit
@@ -71,6 +73,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the spooky internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:price, :description, :user_account_id, :book_id, books_attributes: [:id, :title, :isbn, :volume, :edition])
+      params.require(:post).permit(:price, :description, :user_account_id, :book_id)
     end
 end

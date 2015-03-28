@@ -1,0 +1,32 @@
+<h1 class="text-center">Create Your Book</h1>
+<div class="container">
+	<%= form_for @book do |f| %>
+	<div class="row">
+		<div class="col-sm-2 col-md-2 col-md-offset-5">
+
+			<div class="field">
+				<%= f.label :title%><br>
+				<%= f.text_field :title %>	  
+			</div>
+
+			<div class="field">
+				<%= f.label :isbn%><br>
+				<%= f.text_field :isbn %>	  
+			</div>
+
+			<div class="field">
+				<%= f.label :volume%><br>
+				<%= f.text_field :volume %>	  
+			</div>
+
+			<div class="field">
+				<%= f.label :edition%><br>
+				<%= f.text_field :edition %>	  
+			</div>
+			<br>
+			<%= f.submit "Create Book", :class => 'btn' %>
+		</div>
+		
+	</div>
+	<% end %>
+</div>

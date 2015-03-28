@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   get 'signup' => 'user_accounts#new'
   get 'books/index'  
+  get 'books/new'
+  get 'books/show'
   get 'static_pages/about'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

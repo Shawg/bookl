@@ -1,60 +1,42 @@
 <div class="container">
+<% if current_user_account.nil?%>
+  redirect_to(root_url)
+<% else %>
+<h1 class="text-center">New Post</h1>
+  <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-md-offset-5">
+    <%= form_for(@post) do |f| %>
 
-  <h1 class="text-center">New Post</h1>
+    <div class="field">
+      <%= f.label :price %><br>
+      <%= f.text_field :price %>
+    </div>
 
+    <div class="field">
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>
+    </div>
+
+    <%= f.hidden_field :user_account_id, :value => current_user_account.id %>
+<% if false %>
   
-  <%= form_for(@post) do |f| %>
-  <%= f.fields_for :book, Book.new do |book_form| %>
-  <div class="row">
-    <div class="col-sm-3 col-md-3 col-md-offset-3">
-      <div class="field">
-        <%= book_form.label :title %><br>
-        <%= book_form.text_field :title %>
-      </div>  
-      <div class="field">
-        <%= book_form.label :isbn %><br>
-        <%= book_form.text_field :isbn %>
-      </div>  
-      <div class="field">
-        <%= book_form.label :edition %><br>
-        <%= book_form.text_field :edition %>
-      </div>  
-      <div class="field">
-        <%= book_form.label :volume %><br>
-        <%= book_form.text_field :volume %>
-      </div>  
-      <% end %>
+    <div class="field">
+      <%= f.label :user_account_id %><br>
+      <%= f.text_field :user_account_id, :value => current_user_account.id %>
     </div>
-    <div class="col-sm-3 col-md-3">
+<% end %>
 
-      <div class="field">
-        <%= f.label :price %><br>
-        <%= f.text_field :price %>
-      </div>
-      <div class="field">
-        <%= f.label :description %><br>
-        <%= f.text_area :description %>
-      </div>
-      <div class="field">
-        <%= f.label :user_account_id %><br>
-        <%= f.text_field :user_account_id %>
-      </div>
-
-      <div class="field">
-        <%= f.label :book_id %><br>
-        <%= f.text_field :book_id %>
-      </div>
+    <div class="field">
+      <%= f.label :book_id %><br>
+      <%= f.text_field :book_id %>
     </div>
+    <br>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+    <% end %>
+    <%= link_to 'Back', posts_path %>
   </div>
-  <br>
-  <div class="row">
-    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 col-md-offset-5">
+    <% end %>
 
-      <div class="actions">
-        <%= f.submit %>
-      </div>
-      <% end %>
-      <%= link_to 'Back', posts_path %>
-    </div>
-  </div>
 </div>

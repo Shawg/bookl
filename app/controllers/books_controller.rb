@@ -10,6 +10,7 @@ before_action :set_book, only: [:show, :edit, :update, :destroy]
   # GET /books/1
   # GET /books/1.json
   def show
+    # @book = set_book
   end
 
   # GET /books/new
@@ -69,6 +70,6 @@ before_action :set_book, only: [:show, :edit, :update, :destroy]
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:price, :description, :user_account_id, :book_id)
+      params.require(:book).permit(:isbn, :title, :volume, :edition)
     end
 end
