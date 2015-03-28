@@ -15,6 +15,7 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    @book = @post.build_books
   end
 
   # GET /posts/1/edit
@@ -25,6 +26,7 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
+    # @book = Book.create
 
     respond_to do |format|
       if @post.save
@@ -67,8 +69,8 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
+    # Never trust parameters from the spooky internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:price, :description, :user_account_id, :book_id)
+      params.require(:post).permit(:price, :description, :user_account_id, :book_id, books_attributes: [:id, :title, :isbn, :volume, :edition])
     end
 end

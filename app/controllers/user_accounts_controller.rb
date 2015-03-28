@@ -1,6 +1,6 @@
 class UserAccountsController < ApplicationController
   before_action :set_user_account, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:destroy, :adminView]
+  before_action :admin_user, only: [:destroy, :admin_view]
 
   # GET /user_accounts
   # GET /user_accounts.json
@@ -76,7 +76,7 @@ class UserAccountsController < ApplicationController
          HAVING   COUNT(*) > 0"
     @active_users = ActiveRecord::Base.connection.execute(sql)
   end
-
+  
   # POST /user_accounts
   # POST /user_accounts.json
   def create
