@@ -52,7 +52,7 @@ class Search < ActiveRecord::Base
 	end
 
 	def self.conditions_find
-		sql = "SELECT DISTINCT books.id, books.title, authors.au_fname, authors.au_lname, posts.description, posts.price
+		sql = "SELECT DISTINCT posts.id, books.title, authors.au_fname, authors.au_lname, posts.description, posts.price
 			   FROM posts
 			   INNER JOIN books
 			   ON posts.book_id = books.id

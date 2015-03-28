@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   get 'not_logged_in' => "posts#not_logged_in"
 
   get 'searches/new'
+  get 'authors/new'
+  get 'authors/show'
+  get 'authors/hello'
 
   get 'signup' => 'user_accounts#new'
   get 'books/index'  
