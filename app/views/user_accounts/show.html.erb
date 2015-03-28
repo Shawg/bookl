@@ -1,17 +1,20 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
-		
-	<p>
-	  <strong>Email:</strong>
-	  <%= @user_account.email %>
-	</p>
 
-
-	<p>
-	  <strong>Isadmin?:</strong>
-	  <%= @user_account.isAdmin? %>
-	</p>
-
+	<h3 class="text-center">
+		Welcome
+		<%= @user_account.email %>!
+	</h2>
+	<div class="row">
+		<div class="col-sm-3 col-md-3 col-md-offset-3">
+			<p class="text-center">Want to post a book?</p>
+			<p><a class="btn btn-primary btn-block" href="/posts/new" role="button">Post &raquo;</a></p> 
+		</div>
+		<div class="col-sm-3 col-md-3">
+			<p class="text-center">Want to browse our books?</p>
+			<p><a class="btn btn-primary btn-block" href="/posts" role="button">Browse Posts &raquo;</a></p>
+		</div>
+	</div>
 	<%= link_to 'Edit', edit_user_account_path(@user_account) %> |
 	<%= link_to 'Back', user_accounts_path %>
 </div>
