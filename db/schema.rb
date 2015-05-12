@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327062631) do
+ActiveRecord::Schema.define(version: 20150510014015) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "authors", force: :cascade do |t|
-    t.string   "au_lname"
-    t.string   "au_fname"
+    t.string   "au_lname",   null: false
+    t.string   "au_fname",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20150327062631) do
     t.integer  "isbn"
     t.integer  "volume"
     t.string   "edition"
-    t.string   "title"
+    t.string   "title",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,12 +68,12 @@ ActiveRecord::Schema.define(version: 20150327062631) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "price"
+    t.integer  "price",           null: false
     t.text     "description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.integer  "book_id"
-    t.integer  "user_account_id"
+    t.integer  "book_id",         null: false
+    t.integer  "user_account_id", null: false
   end
 
   create_table "searches", force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(version: 20150327062631) do
   end
 
   create_table "user_accounts", force: :cascade do |t|
-    t.string   "email"
+    t.string   "email",                           null: false
     t.boolean  "isAdmin?",        default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false

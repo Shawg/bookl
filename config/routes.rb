@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'static_pages#home'
+  root 'books#index'
   get  'static_pages/about'
 
   get 'user_accounts/index'
@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   get 'books/index'  
   get 'books/new'
   get 'books/show'
+  get 'books/retreive_from_isbn'
   get 'static_pages/about'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

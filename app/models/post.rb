@@ -1,7 +1,6 @@
 class Post < ActiveRecord::Base
-	has_one :book
+	belongs_to :book
 	has_many :availabilitys, dependent: :destroy
 	has_many :messages, dependent: :destroy
-	belongs_to :user_accounts
-	accepts_nested_attributes_for :book
+	belongs_to :user_account
 end

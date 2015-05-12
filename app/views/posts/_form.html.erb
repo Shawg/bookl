@@ -1,25 +1,39 @@
-<% if false %>
-  
-<%= form_for(@post) do |f| %>
+<%= form_for @post do |f| %>
   <div class="field">
     <%= f.label :price %><br>
     <%= f.text_field :price %>
   </div>
+
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
-  <div class="field">
-    <%= f.label :user_account_id %><br>
-    <%= f.text_field :user_account_id %>
-  </div>
-  <div class="field">
-    <%= f.label :book_id %><br>
-    <%= f.text_field :book_id %>
-  </div>
+  
+  <%= f.fields_for :book do |builder| %>
+    <div class="field">
+      <%= builder.label :title %><br>
+      <%= builder.text_field :title %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :isbn %><br>
+      <%= builder.text_area :isbn %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :volume %><br>
+      <%= builder.text_area :volume %>
+    </div>
+
+    <div class="field">
+      <%= builder.label :edition %><br>
+      <%= builder.text_area :edition %>
+    </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-<% end %>
+
 

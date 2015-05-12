@@ -1,32 +1,64 @@
 <h1 class="text-center">Create Your Book</h1>
 <div class="container">
 	<%= form_for @book do |f| %>
-	<div class="row">
-		<div class="col-sm-2 col-md-2 col-md-offset-5">
+		<div class="field">
+			<%= f.label :title %>
+			<%= f.text_field :title %>
 
-			<div class="field">
-				<%= f.label :title%><br>
-				<%= f.text_field :title %>	  
-			</div>
+			<%= f.label :volume %>
+			<%= f.text_field :volume %>
 
-			<div class="field">
-				<%= f.label :isbn%><br>
-				<%= f.text_field :isbn %>	  
-			</div>
-
-			<div class="field">
-				<%= f.label :volume%><br>
-				<%= f.text_field :volume %>	  
-			</div>
-
-			<div class="field">
-				<%= f.label :edition%><br>
-				<%= f.text_field :edition %>	  
-			</div>
-			<br>
-			<%= f.submit "Create Book", :class => 'btn' %>
+			<%= f.label :edition %>
+			<%= f.text_field :edition %>
 		</div>
-		
-	</div>
+
+		<%= f.fields_for :post do |p| %>
+			<div class="field">
+				<%= p.label :price %>
+				<%= p.text_field :price %>
+
+				<%= p.label :description %>
+				<%= p.text_field :description %>
+			</div>
+
+			<%= p.hidden_field :user_account_id, :value => current_user_account.id %>
+		<% end %>
+
+		<%= f.fields_for :author_books do |ab| %>
+			<%= ab.fields_for :author do |a| %>
+				<div class="field">
+					<%= a.label :au_fname %>
+					<%= a.text_field :au_fname %>
+
+					<%= a.label :au_lname %>
+					<%= a.text_field :au_lname %>
+
+					<%= a.check_box :_destroy %>
+				    <%= a.label :_destroy, 'delete' %>
+				</div>
+			<% end %>
+		<% end %>
+		<%= f.submit 'Add author', :name => "add_author" %>
+		<%= f.fields_for :book_courses do |bc| %>
+			<%= bc.fields_for :course do |c| %>
+				<div class="field">
+					<%= c.label :department %>
+					<%= c.text_field :department %>
+
+					<%= c.label :course_number %>
+					<%= c.text_field :course_number %>
+
+					<%= c.check_box :_destroy %>
+				    <%= c.label :_destroy, 'delete' %>
+				</div>
+			<% end %>
+		<% end %>
+		<%= f.submit 'Add course', :name => "add_course" %> <br>
+		<%= f.submit 'Remove selected', :name => "remove_selected" %>
+
+		<div class="actions">
+			<%= f.submit %>
+		</div>
 	<% end %>
 </div>
+
