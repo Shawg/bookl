@@ -15,8 +15,11 @@ gem 'immigrant'
 gem 'ransack'
 gem 'responders',           '~> 2.0'
 gem 'kaminari'
+gem "factory_girl_rails", "~> 4.0"
 
 group :development, :test do
+  gem "factory_girl_rails", "~> 4.0"
+  gem 'rspec-rails', '~> 3.0'
   gem 'pg',          '0.17.1'
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'

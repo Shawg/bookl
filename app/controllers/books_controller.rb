@@ -44,7 +44,7 @@ respond_to :html
     else
       respond_to do |format|
         if @book.save
-          flash[:notice] = "Successfully created recipe."
+          flash[:notice] = "Successfully created book."
           redirect_to @book and return
         end
       end

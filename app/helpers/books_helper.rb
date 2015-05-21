@@ -16,7 +16,7 @@ module BooksHelper
 	def display_sort_column_headers(search)
 		model_fields.each_with_object('') do |field, string|
 			if field == :post
-				field = 'post_price'
+				field = :post_price
 			end
 			string << content_tag(:th, sort_link(search, field, {}, method: action))
 		end
