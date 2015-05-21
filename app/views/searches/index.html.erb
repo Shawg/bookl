@@ -1,0 +1,12 @@
+<div class="container">
+	<%= search_form_for @search, url: 'searches' do |f| %>
+		<fieldset>
+			<legend>Search</legend>
+			<%= f.label :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any, "Search" %>
+			<%= f.text_field :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any %>
+			<%= f.submit %>
+		</fieldset>		
+	<%end%>
+	<%= paginate @results %>
+	<%= render 'results' %>
+</div>

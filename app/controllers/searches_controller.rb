@@ -1,6 +1,21 @@
 class SearchesController < ApplicationController
 	before_action :set_search, only: [:show]
 
+	def index
+		unless params[:q].nil?
+			params[:q][:combinator] = 'or'
+			params[:q][:groupings] = []
+			custom_words = params[:q][:title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any]
+			custom_words.split(' ').each_with_index do |word, index|
+				params[:q][:groupings][index] = {title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont: word}
+			end
+		end
+
+	    @search = Book.joins(:authors, :courses).search(params[:q])
+	    @results = @search.result(:distinct=>true).includes(:post, :authors, :courses).page(params[:page]).per(10)
+
+	end
+
 	def new
 		@search = Search.new
 	end
@@ -8,7 +23,7 @@ class SearchesController < ApplicationController
 	def create
 		@search = Search.new(search_params)
 		if @search.save
-			@results = Search.posts(@search)
+			@results = Search.books(@search)
 			redirect_to @search
 		else
 			render :action => 'index'
@@ -16,7 +31,7 @@ class SearchesController < ApplicationController
 	end
 
 	def show
-		@results = Search.posts(@search)
+		@results = Search.books(@search)
 	end
 
 	 private

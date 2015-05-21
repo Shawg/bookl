@@ -1,6 +1,10 @@
 class Search < ActiveRecord::Base
 
+	has_many :books
 	has_many :posts
+	has_many :authors
+	has_many :courses
+
 	@where = 0
 
 	def self.posts(search)

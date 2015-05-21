@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'books#index'
+  root 'searches#index'
   get  'static_pages/about'
 
   get 'user_accounts/index'
@@ -8,19 +8,12 @@ Rails.application.routes.draw do
   get 'user_accounts/edit'
   get 'user_accounts/show'
   get 'admin' => 'user_accounts#admin_view'
-  get 'not_logged_in' => "posts#not_logged_in"
-
-  get 'searches/new'
-  get 'authors/new'
-  get 'authors/show'
-  get 'authors/hello'
 
   get 'signup' => 'user_accounts#new'
-  get 'books/index'  
   get 'books/new'
   get 'books/show'
-  get 'books/retreive_from_isbn'
   get 'static_pages/about'
+  get 'not_logged_in' => "posts#not_logged_in"
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'

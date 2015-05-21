@@ -1,24 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing User Accounts</h1>
+<% if current_user_account %>
+
+<p> Hello <%= current_user_account.email %></p> 
+
+<h1>Posting History</h1>
 <div class="container">
   <table class="table">
     <thead>
       <tr>
-        <th>Email</th>
-        <th>Isadmin?</th>
+        <th>Book</th>
+        <th>Status</th>
         <th colspan="3"></th>
       </tr>
     </thead>  
 
     <tbody>
-      <% @user_accounts.each do |user_account| %>
+      <% current_user_account.books.each do |book| %>
         <tr>
-          <td><%= user_account.email %></td>
-          <td><%= user_account.isAdmin? %></td>
-          <td><%= link_to 'Show', user_account %></td>
-          <td><%= link_to 'Edit', edit_user_account_path(user_account) %></td>
-          <td><%= link_to 'Destroy', user_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= book.title %></td>
+          <td><%= book.post.price %></td>
+          <td><%= link_to 'Show', book %></td>
+          <td><%= link_to 'Edit', edit_book_path(book) %></td>
+          <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
@@ -28,3 +32,9 @@
 <br>
 
 <%= link_to 'New User account', new_user_account_path %>
+
+<% else %>
+
+<p>You must log in before you can view this page</p>
+
+<% end %>

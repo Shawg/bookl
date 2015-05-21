@@ -1,0 +1,6 @@
+<%= content_tag :p, display_query_sql(@results) %>
+<%= page_entries_info @results %>
+<%= content_tag :table do %>
+  <%= content_tag :thead, display_sort_column_headers(@search), nil, false %>
+  <%= content_tag :tbody, display_search_results(@results), nil, false %>
+<% end %>
