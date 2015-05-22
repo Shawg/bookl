@@ -1,6 +1,6 @@
 class UserAccountsController < ApplicationController
   before_action :set_user_account, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:destroy, :admin_view]
+  before_action :admin_user, only: [:admin_view]
 
   # GET /user_accounts
   # GET /user_accounts.json
@@ -10,7 +10,7 @@ class UserAccountsController < ApplicationController
 
   # GET /user_accounts/1
   # GET /user_accounts/1.json
-  def show ()
+  def show
 
   end
  
@@ -111,9 +111,10 @@ class UserAccountsController < ApplicationController
   # DELETE /user_accounts/1
   # DELETE /user_accounts/1.json
   def destroy
+    @user_account = UserAccount.find(params[:id])
     @user_account.destroy
     respond_to do |format|
-      format.html { redirect_to 'user_account/adminView', notice: 'User account was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'User account was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
