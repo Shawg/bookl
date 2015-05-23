@@ -15,6 +15,7 @@
   width: 100px;
 }
 */
+
 .debug_dump {
   clear: both;
   float: left;
@@ -45,7 +46,12 @@ body {
 /* CUSTOMIZE THE NAVBAR
 -------------------------------------------------- */
 
+
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
+#navbar {
+  width: 100%;
+}
+
 .navbar-wrapper {
   position: absolute;
   top: 0;
@@ -64,7 +70,7 @@ body {
   padding-left: 15px;
 }
 .navbar-wrapper .navbar .container {
-  width: auto;
+  width: 100%;
 }
 
 

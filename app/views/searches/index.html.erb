@@ -1,11 +1,10 @@
 <div class="container">
-	<%= search_form_for @search, url: 'searches' do |f| %>
-		<fieldset>
-			<legend>Search</legend>
-			<%= f.label :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any, "Search" %>
-			<%= f.text_field :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any %>
-			<%= f.submit %>
-		</fieldset>		
+	<legend>Search</legend>
+	<%= search_form_for @search, url: 'searches', :html => {:class => "input-group input-group-lg"} do |f| %>
+		<%= f.text_field :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any, :class => "form-control", placeholder: "ex. Catastrophic Earth EOSC 114" %>
+		<span class="input-group-btn">
+			<%= f.submit "Search", :class => 'btn btn-default pull-right' %>
+		</span>
 	<%end%>
 	<%= paginate @results %>
 	<%= render 'results' %>

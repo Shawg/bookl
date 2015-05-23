@@ -1,6 +1,26 @@
-<%= content_tag :p, display_query_sql(@results) %>
+<%= content_tag :p, display_query_sql(@results) if false %>
 <%= page_entries_info @results %>
-<%= content_tag :table do %>
-  <%= content_tag :thead, display_sort_column_headers(@search), nil, false %>
-  <%= content_tag :tbody, display_search_results(@results), nil, false %>
-<% end %>
+<div id="results" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<table class='table table-hover'>
+		<thead>
+			<%= content_tag(:th, sort_link(@search, :title, {}, method: action), class: 'col-lg-4') %>
+			<%= content_tag(:th, sort_link(@search, :authors, {}, method: action, class: 'col-lg-4')) %>
+			<%= content_tag(:th, sort_link(@search, :post_price, {}, method: action), class: 'col-lg-1') %>
+			<%= content_tag(:th, sort_link(@search, :created_at, "Posted", method: action), class: 'col-lg-4') %>
+		</thead>
+	
+		<tbody>
+			<% @results.each do |book| %>
+				<tr onclick="location.href='<%=book_path(book)%>'">
+					<%= content_tag(:td, book.send(:title), class: 'col-lg-4') %>
+					<% authors = book.authors.collect{ |author| author.au_fname + " " + author.au_lname } %>
+					<% authors.sort_by!{ |b| b.downcase } %>
+					<%= content_tag(:td, authors.to_s.gsub(/[^0-9A-Za-z, ]/, ''), class: 'col-lg-4') %>
+					<%= content_tag(:td, book.post.price, class: 'col-lg-1') %>
+					<% time = book.created_at.to_date.to_formatted_s(:long_ordinal) %> </td>
+					<%= content_tag(:td, time, class: 'col-lg-4') %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>

@@ -32,7 +32,7 @@ module SearchHelper
 			if field == :post
 				string << content_tag(:td, object.post.price)
 			elsif field == :authors
-				authors = object.author_books.collect{|author_book|
+				authors = object.author_books.collect{ |author_book|
 					author = Author.find_by_id(author_book.author_id)
 					author.au_fname + " " + author.au_lname
 				}

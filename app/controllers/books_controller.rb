@@ -96,7 +96,7 @@ respond_to :html
     @book = Book.find(params[:id])
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to user_accounts_url, notice: 'book was successfully destroyed.' }
+      format.html { redirect_to user_account_path(current_user_account), notice: 'book was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -21,17 +21,9 @@ class SearchesController < ApplicationController
 	end
 
 	def create
-		@search = Search.new(search_params)
-		if @search.save
-			@results = Search.books(@search)
-			redirect_to @search
-		else
-			render :action => 'index'
-		end
 	end
 
 	def show
-		@results = Search.books(@search)
 	end
 
 	 private
