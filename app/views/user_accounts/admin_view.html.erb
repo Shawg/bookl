@@ -28,7 +28,7 @@
       </div>
     </div>
     <% else %>
-      <div class="bg-danger"><h3>User was not found.</h3></div>
+    <div class="bg-danger"><h3>User was not found.</h3></div>
     <%end%>
 
     <br>
@@ -76,9 +76,9 @@
       </thead>
       <tbody>
         <% @number_of_users.each do |number_of_users| %>
-          <tr>
-            <td><%= number_of_users["count"] %></td> 
-          </tr>
+        <tr>
+          <td><%= number_of_users["count"] %></td> 
+        </tr>
         <% end %>
       </tbody>
     </table>
@@ -91,9 +91,9 @@
         </tr>
       </thead>
       <tbody>
-          <tr>
-            <td>$<%= @min_price.first['min'] %></td> 
-          </tr>
+        <tr>
+          <td>$<%= @min_price.first['min'] %></td> 
+        </tr>
       </tbody>
     </table>
   </div>
@@ -105,9 +105,9 @@
         </tr>
       </thead>
       <tbody>
-          <tr>
-            <td>$<%= @max_price.first['max'] %></td> 
-          </tr>
+        <tr>
+          <td>$<%= @max_price.first['max'] %></td> 
+        </tr>
       </tbody>
     </table>
   </div>
@@ -115,7 +115,7 @@
 
 
 
-
+<% if false%>
 <h2 class="text-center">User History</h2>
 <div class="scrollable">
  <table class="table table-condensed">
@@ -140,7 +140,9 @@
   </tbody>
 </table>
 </div>
+<%end%>
 
+<% if false%>
 <h2 class="text-center">Active Users</h2>
 <h4 class="text-center">At least 1 book posted</h4>
 <div class="scrollable">
@@ -164,29 +166,32 @@
   </tbody>
 </table>
 </div>
+<%end%>
 
 
+<% if false%>
 <!-- Nested Aggregation Query-->
 <h2 class="text-center">Most Active Users</h2>
-  <table class="table table-condensed">
-    <thead>
-      <tr>
-        <th>Account ID</th>
-        <th>Email</th>
-        <th>Posts</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @most_active_user.each do |most_active_user| %>
-        <tr>
-          <td><%= most_active_user["user_account_id"] %></td> 
-          <td><%= most_active_user["email"] %></td> 
-          <td><%= most_active_user["count"] %></td> 
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+<table class="table table-condensed">
+  <thead>
+    <tr>
+      <th>Account ID</th>
+      <th>Email</th>
+      <th>Posts</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @most_active_user.each do |most_active_user| %>
+    <tr>
+      <td><%= most_active_user["user_account_id"] %></td> 
+      <td><%= most_active_user["email"] %></td> 
+      <td><%= most_active_user["count"] %></td> 
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<%end%>
 
 
 <div class="row">
@@ -233,7 +238,11 @@
           <tr>
             <td><%= post.price %></td>
             <td><%= post.description %></td>
+
+            <% if false %>
             <td><%= post.user_account_id %></td>
+            <% end -%>
+
             <td><%= post.book_id %></td>
             <td><%= link_to 'Show', post %></td>
             <td><%= link_to 'Edit', edit_post_path(post) %></td>
