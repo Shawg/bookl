@@ -12,11 +12,11 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/1.json
   def show
   end
- 
+
   # GET /user_accounts/new
   def new
     @user_account = UserAccount.new
- 
+
   end
 
   # GET /user_accounts/1/edit
@@ -31,49 +31,56 @@ class UserAccountsController < ApplicationController
     end
 
     sql = "SELECT avg(p.price)
-           FROM posts p"
+    FROM posts p"
     @average_price = ActiveRecord::Base.connection.execute(sql)
 
     sql = "SELECT max(p.price) as max
-           FROM posts p"
+    FROM posts p"
     @max_price = ActiveRecord::Base.connection.execute(sql)
 
     sql = "SELECT min(p.price) as min
-           FROM posts p"
+    FROM posts p"
     @min_price = ActiveRecord::Base.connection.execute(sql)
 
-    sql = "SELECT ua.id, b.volume, b.edition, b.title
-          FROM books b, posts p, user_accounts ua
-          WHERE p.book_id = b.id AND p.user_account_id = ua.id "
-    @user_history = ActiveRecord::Base.connection.execute(sql)
+    # Broken query because of refactoring of post table
+    
+    # sql = "SELECT ua.id, b.volume, b.edition, b.title
+    #       FROM books b, posts p, user_accounts ua
+    #       WHERE p.book_id = b.id AND p.user_account_id = ua.id "
+    # @user_history = ActiveRecord::Base.connection.execute(sql)
 
     sql = "SELECT count(*)
-          FROM posts"
+    FROM posts"
     @number_of_posts = ActiveRecord::Base.connection.execute(sql)
 
     sql = "SELECT count(*)
-          FROM user_accounts"
+    FROM user_accounts"
     @number_of_users = ActiveRecord::Base.connection.execute(sql)
 
-    sql = "SELECT user_account_id, email, COUNT(user_account_id)
-          FROM posts INNER JOIN user_accounts ON user_account_id = user_accounts.id
-          GROUP BY user_account_id, email
-          HAVING COUNT(user_account_id) = (SELECT MAX(cnt)
-                                          FROM (SELECT user_account_id, COUNT(user_account_id) as cnt
-                                               FROM posts
-                                               GROUP BY user_account_id) uc
-                                          )"
-    @most_active_user = ActiveRecord::Base.connection.execute(sql)
+    # Broken query because of refactoring of post table
+
+    # sql = "SELECT user_account_id, email, COUNT(user_account_id)
+    #       FROM posts INNER JOIN user_accounts ON user_account_id = user_accounts.id
+    #       GROUP BY user_account_id, email
+    #       HAVING COUNT(user_account_id) = (SELECT MAX(cnt)
+    #                                       FROM (SELECT user_account_id, COUNT(user_account_id) as cnt
+    #                                            FROM posts
+    #                                            GROUP BY user_account_id) uc
+    #                                       )"
+    # @most_active_user = ActiveRecord::Base.connection.execute(sql)
+
+  
+  # Broken query because of refactoring of post table
 
   # All users who have posted at least one book
-  sql = "SELECT   ua.id, ua.email ,COUNT(*)
-         FROM     user_accounts ua
-                  INNER JOIN posts p ON ua.id = p.user_account_id
-         GROUP BY ua.id
-         HAVING   COUNT(*) > 0"
-    @active_users = ActiveRecord::Base.connection.execute(sql)
-  end
-  
+  # sql = "SELECT   ua.id, ua.email ,COUNT(*)
+  #        FROM     user_accounts ua
+  #                 INNER JOIN posts p ON ua.id = p.user_account_id
+  #        GROUP BY ua.id
+  #        HAVING   COUNT(*) > 0"
+  #   @active_users = ActiveRecord::Base.connection.execute(sql)
+end
+
   # POST /user_accounts
   # POST /user_accounts.json
   def create
@@ -135,4 +142,4 @@ class UserAccountsController < ApplicationController
     def user_account_params
       params.require(:user_account).permit(:email, :password, :password_confirmation, :isAdmin?)
     end
-end
+  end

@@ -19,7 +19,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if logged_in? %>
+
           <li><%= link_to current_user_account.email, current_user_account %></li>     
+          <li><%= link_to "Dashboard", dashboard_path%></li>
+
           <li><%= link_to "Log out", logout_path, method: "delete" %></li>
         <% else %>
           <li ><%= link_to "Log in", login_path %></li>
