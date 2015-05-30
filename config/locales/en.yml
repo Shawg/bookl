@@ -20,4 +20,13 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+# activerecord:
+#      attributes:
+# 	     	author_book:
+# 	     		author_id: "authooooor"
+#      errors:
+#      	models:
+#      		author_book:
+#      			attributes:
+#      				author_id:
+#      					blank: "cannot be empty"

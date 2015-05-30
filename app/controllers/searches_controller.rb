@@ -3,22 +3,19 @@ class SearchesController < ApplicationController
 	PAGESIZE = 40
 
 	def index
-		unless params[:q].nil?
-			unless params[:q][:title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any].nil?
-				params[:q][:combinator] = 'or'
-				params[:q][:groupings] = []
-				custom_words = params[:q][:title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any]
-				custom_words.split(' ').each_with_index do |word, index|
-					params[:q][:groupings][index] = {title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont: word}
-				end
-				@search = Book.joins(:authors, :courses).ransack(params[:q])
-				@results = @search.result(:distinct=>true).includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
-			else
-				@search = Book.ransack(params[:q])
-				@results = @search.result.includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
+		unless params[:query].nil?
+			params[:combinator] = 'or'
+			params[:groupings] = []
+			custom_words = params[:query]
+			custom_words.split(' ').each_with_index do |word, index|
+				params[:groupings][index] = {title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont: word}
 			end
+			@search = Book.joins(:authors, :courses).ransack(params)
+			@results = @search.result(:distinct=>true).includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
+			return
 		end
-
+		@search = Book.ransack(params[:q])
+		@results = @search.result.includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
 	end
 
 	def new

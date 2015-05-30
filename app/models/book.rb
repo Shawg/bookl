@@ -7,6 +7,8 @@ class Book < ActiveRecord::Base
 	has_many :book_courses, :dependent => :destroy
 
 	accepts_nested_attributes_for :post
-	accepts_nested_attributes_for :author_books
-	accepts_nested_attributes_for :book_courses
+	accepts_nested_attributes_for :author_books, :allow_destroy => true
+	accepts_nested_attributes_for :book_courses, :allow_destroy => true
+
+	validates :user_account, :title, presence: true
 end

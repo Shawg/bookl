@@ -2,6 +2,9 @@ class BooksController < ApplicationController
 before_action :set_book, only: [:show, :edit, :update, :destroy]
 respond_to :html
 
+  def index
+  end
+
   # GET /books/1
   # GET /books/1.json
   def show
@@ -25,24 +28,35 @@ respond_to :html
   # book /books
   # book /books.json
   def create
-    @book = Book.new(book_params)
-    if params[:add_author]
-      @author_books = @book.author_books.build
-      @author = @author_books.build_author
-    elsif params[:add_course]
-      @book_courses = @book.book_courses.build
-      @course = @book_courses.build_course
-    elsif params[:remove_selected]
-      # automatically deleted by rails
+    @book = Book.new(book_params) 
+    if params[:add_author] || params[:add_course] || params[:remove_selected]
+      if params[:add_author]
+        @author_books = @book.author_books.build
+        @author = @author_books.build_author
+      end
+      if params[:add_course]
+        @book_courses = @book.book_courses.build
+        @course = @book_courses.build_course
+      end
+      if params[:destroy_auth]
+        AuthorBook.destroy_all(author_id: params[:destroy_auth][:id])
+      end
+
+      respond_to do |format|
+        format.html { render :new }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
     else
       respond_to do |format|
         if @book.save
-          flash[:notice] = "Successfully created book."
-          redirect_to @book and return
+          flash[:success] = "Successfully created book."
+          redirect_to current_user_account and return
+        else 
+          format.html { render :new }
+          format.json { render json: @book.errors, status: :unprocessable_entity }
         end
       end
     end
-    render :action => 'new'
   end
 
   # PATCH/PUT /books/1
@@ -51,43 +65,37 @@ respond_to :html
     @book = Book.find(params[:id])
     if params[:add_author]
       # rebuild the authors w/o an id
-      unless params[:book][:author_books_attributes][:author_attributes].blank?
-        for attribute in params[:book][:author_books_attributes][:author_attributes]
-          @book.author_books.build.build_author(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+      unless params[:book][:author_books_attributes].blank?
+        unless params[:book][:author_books_attributes][:author_attributes].blank?
+          for attribute in params[:book][:author_books_attributes][:author_attributes]
+            @book.author_books.build.build_author(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+          end
         end
       end
       # add one more empty author attribute
       @book.author_books.build.build_author
-    elsif params[:remove_selected]
-      # collect all marked for delete authors ids
-      removed_authors = params[:book][:author_books_attributes].collect { |i, auth| auth[:author_attributes][:id] if (auth[:author_attributes][:id] && auth[:author_attributes][:_destroy].to_i == 1) }
-      # delete from db
-      removed_authors.each do |auth|
-        AuthorBook.destroy_all(author_id: auth)
+    elsif params[:add_course]
+      # rebuild the courses w/o an id
+      unless params[:book][:book_courses_attributes].blank?
+        unless params[:book][:book_courses_attributes][:course_attributes].blank?
+          for attribute in params[:book][:book_courses_attributes][:course_attributes]
+            @book.book_courses.build.build_course(attribute.last.except(:_destroy)) unless attribute.last.has_key?(:id)
+          end
+        end
       end
-      # for attribute in params[:book][:author_books_attributes]
-      #   # rebuild authors attributes that doesn't have an id and its _destroy attribute is not 1
-      #   @book.author_books.build.build_author(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
-      # end
-
-      # collect all marked for delete courses ids
-      removed_courses = params[:book][:book_courses_attributes].collect { |i, course| course[:course_attributes][:id] if (course[:course_attributes][:id] && course[:course_attributes][:_destroy].to_i == 1) }
-      # delete from db
-      removed_courses.each do |course|
-        BookCourse.destroy_all(course_id: course)
-      end
-      # for attribute in params[:book][:course_books_attributes]
-      #   # rebuild courses attributes that doesn't have an id and its _destroy attribute is not 1
-      #   @book.course_books.build.build_course(attribute.last.except(:_destroy)) if (!attribute.last.has_key?(:id) && attribute.last[:_destroy].to_i == 0)
-      # end
-      flash[:notice] = "Authors/Courses removed."
-    else
-      if @book.update_attributes(book_params)
-        flash[:notice] = "Successfully updated book."
+      # add one more empty course attribute
+      @book.book_courses.build.build_course
+    elsif @book.update_attributes(book_params)
+        flash[:success] = "Successfully updated book."
         redirect_to @book and return
-      end
     end
     render :action => 'edit'
+  end
+
+  def repost
+    @book = Book.find(params[:id])
+    @book.update_attributes active: !@book.active
+    redirect_to user_account_path(current_user_account)
   end
 
   # DELETE /books/1
@@ -96,7 +104,8 @@ respond_to :html
     @book = Book.find(params[:id])
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to user_account_path(current_user_account), notice: 'book was successfully destroyed.' }
+      flash[:success] = "Book has been destroyed"
+      format.html { redirect_to user_account_path(current_user_account)}
       format.json { head :no_content }
     end
   end
@@ -111,7 +120,7 @@ respond_to :html
     def book_params
       params.require(:book).permit(:isbn, :title, :volume, :edition, :user_account_id, 
         post_attributes: [:price, :description, :book_id],
-        author_books_attributes: [author_attributes: [:au_fname, :au_lname, :_destroy]],
-        book_courses_attributes: [course_attributes: [:department, :course_number, :_destroy]])
+        author_books_attributes: [:id, :_destroy, author_attributes: [:id, :au_fname, :au_lname, :_destroy]],
+        book_courses_attributes: [:id, :_destroy, course_attributes: [:id, :department, :course_number, :_destroy]])
     end
 end

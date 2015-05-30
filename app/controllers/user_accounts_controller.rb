@@ -11,7 +11,6 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/1
   # GET /user_accounts/1.json
   def show
-
   end
  
   # GET /user_accounts/new
@@ -23,7 +22,6 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/1/edit
   def edit
   end
-
 
   def admin_view
     @user_accounts = UserAccount.all

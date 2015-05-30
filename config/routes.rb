@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :courses
+
+  resources :authors
+
   root 'searches#index'
   get  'static_pages/about'
 
@@ -8,6 +12,7 @@ Rails.application.routes.draw do
   get 'user_accounts/edit'
   get 'user_accounts/show'
   get 'admin' => 'user_accounts#admin_view'
+  get 'repost' => 'books#repost'
 
   get 'signup' => 'user_accounts#new'
   get 'books/new'

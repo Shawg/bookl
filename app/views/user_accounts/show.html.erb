@@ -1,4 +1,5 @@
-<h3><%= current_user_account.email %></h3> 
+<h3 style="display:inline-block"><%= current_user_account.email %></h3>
+<%= link_to '[edit]', edit_user_account_path %>
 
 <h1>Posting History</h1>
 <div class="container">
@@ -16,10 +17,17 @@
       <% if current_user_account.books.empty? %>
         <tr> <td> No books posted </td> </tr>
       <% end %>
-      <% current_user_account.books.each do |book| %>
-        <tr>
+      <% current_user_account.books.sort_by(&:created_at).each do |book| %>
+        <tr class="<%= book.active ? '' : 'danger' %>">
           <td><%= link_to book.title, book %></td>
-          <td> Posted/Expired </td>
+          <td>
+            <% if book.active %>
+              Posted
+            <% else %>
+              Expired
+              <%= link_to 'Repost', repost_path(id: book.id) %>
+            <% end %>
+          </td>
           <td> <%= Time.at(book.created_at).to_formatted_s(:long) %> </td>
           <td><%= link_to 'Edit', edit_book_path(book) %></td>
           <td><%= link_to 'Destroy', book, id: current_user_account.id, method: :delete, data: { confirm: 'Are you sure?' } %></td>

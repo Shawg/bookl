@@ -42,6 +42,7 @@ UserAccount.create(
       volume: "#{App.version}",
       edition: "#{Number.digit}",
       title: "#{App.name}",
+      active: rand(2) == 1,
       user_account_id: user.id
     )
 

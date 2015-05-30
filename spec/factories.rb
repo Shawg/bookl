@@ -1,6 +1,7 @@
 require 'faker'
 
 FactoryGirl.define do
+
   factory :user_account, aliases: [:user] do
     email { Faker::Internet.email }
     password  "password"
