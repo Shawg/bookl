@@ -115,13 +115,14 @@
 
 
 
-<% if false%>
+
 <h2 class="text-center">User History</h2>
 <div class="scrollable">
  <table class="table table-condensed">
    <thead>
      <tr>
       <th>Account ID</th>
+      <th>User Email</th>
       <th>Book Title</th>
       <th>Book Volume</th>
       <th>Book Editition</th>
@@ -132,6 +133,7 @@
     <% @user_history.each do |user_history| %>
     <tr>
       <td><%= user_history["id"] %></td> 
+      <td><%= user_history["email"] %></td> 
       <td><%= user_history["title"] %></td> 
       <td><%= user_history["volume"] %></td> 
       <td><%= user_history["edition"] %></td> 
@@ -140,9 +142,9 @@
   </tbody>
 </table>
 </div>
-<%end%>
 
-<% if false%>
+<br>
+
 <h2 class="text-center">Active Users</h2>
 <h4 class="text-center">At least 1 book posted</h4>
 <div class="scrollable">
@@ -166,12 +168,12 @@
   </tbody>
 </table>
 </div>
-<%end%>
 
 
-<% if false%>
+
+
 <!-- Nested Aggregation Query-->
-<h2 class="text-center">Most Active Users</h2>
+<h2 class="text-center">Most Active User(s)</h2>
 <table class="table table-condensed">
   <thead>
     <tr>
@@ -191,7 +193,7 @@
     <% end %>
   </tbody>
 </table>
-<%end%>
+
 
 
 <div class="row">
@@ -238,7 +240,7 @@
           <tr>
             <td><%= post.price %></td>
             <td><%= post.description %></td>
-
+<!-- Need to figure out solution to get user -->
             <% if false %>
             <td><%= post.user_account_id %></td>
             <% end -%>
@@ -259,5 +261,3 @@
 </div>
 
 <br>
-
-<%= link_to 'New User account', new_user_account_path %>
