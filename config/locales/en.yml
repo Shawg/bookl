@@ -21,12 +21,9 @@
 
 en:
 # activerecord:
-#      attributes:
-# 	     	author_book:
-# 	     		author_id: "authooooor"
-#      errors:
-#      	models:
-#      		author_book:
-#      			attributes:
-#      				author_id:
-#      					blank: "cannot be empty"
+# errors:
+# models:
+# book:
+# attributes:
+# author_books:
+# blank: "empy???"
