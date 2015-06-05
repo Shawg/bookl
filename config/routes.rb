@@ -1,30 +1,34 @@
 Rails.application.routes.draw do
 
-  resources :courses
+  # root 'searches#index'
+  root 'static_pages#home'
 
-  resources :authors
+  get 'search' => 'searches#index'
 
-  root 'searches#index'
-  get  'static_pages/about'
+  get 'bookl' => 'static_pages#home'
+  get 'about' => 'static_pages#about'
 
   get 'user_accounts/index'
   get 'user_accounts/new'
   get 'user_accounts/edit'
   get 'user_accounts/show'
-  get 'admin' => 'user_accounts#admin_view'
-  get 'repost' => 'books#repost'
 
-  get 'signup' => 'user_accounts#new'
+  get 'admin' => 'user_accounts#admin_view'
+
+  get 'repost' => 'books#repost'
   get 'books/new'
   get 'books/show'
-  get 'static_pages/about'
+
+  get 'signup' => 'user_accounts#new'  
   get 'not_logged_in' => "posts#not_logged_in"
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  get 'dashboard' => 'user_accounts#dashboard'
   
+  resources :static_pages
+  resources :courses
+  resources :authors
   resources :user_accounts
   resources :posts
   resources :searches
