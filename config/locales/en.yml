@@ -20,10 +20,15 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-# activerecord:
-# errors:
-# models:
-# book:
-# attributes:
-# author_books:
-# blank: "empy???"
+  activerecord:
+    attributes:
+      book:
+        authors: "Book"
+        courses: "Book"
+      post:
+        price: "Price"
+      book_courses/course:
+        course_number: "Course number"
+        department: "Department"
+      author_books/author:
+        au_lname: "Author's last name"

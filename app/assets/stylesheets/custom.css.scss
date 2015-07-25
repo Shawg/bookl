@@ -24,10 +24,6 @@
   @include box_sizing;
 }
 
-
-body {
-  padding-top: 50px;
-}
 .starter-template {
   padding: 40px 15px;
   text-align: center;
@@ -48,6 +44,7 @@ body {
 
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
+
 #navbar {
   width: 100%;
 }

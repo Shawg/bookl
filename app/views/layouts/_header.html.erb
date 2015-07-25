@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -13,7 +13,7 @@
       <ul class="nav navbar-nav">
         <li ><%= link_to "View Posts" , search_path%></li>             
 
-        <li >
+        <li>
           <%= link_to_unless logged_in? == false, "New Post", new_book_path do
             link_to "New Post", login_path
             end%>
