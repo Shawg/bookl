@@ -1,23 +1,34 @@
 <div class="container">
-	<h1 class="text-center">Book Information:</h1>
-	<h1>Book ID: <%= @book.id %></h1>
-	<h1>Title: <%= @book.title %></h1>
-	<h1>Edition: <%= @book.edition %></h1>
-	<h1>Volume: <%= @book.volume %></h1>
-	<h1>ISBN: <%= @book.isbn %></h1>
-	<h1>User: <%= @book.user_account.email %></h1>
-	<h1>Post ID: <%= @book.post.id %></h1>
-	<h1>Description: <%= @book.post.description %></h1>
-	<h1>Price: <%= @book.post.price %></h1>
-	<h1>Author(s):
-		<% @book.author_books.each do |ab| %>
-			<ul> <%= ab.author.au_lname %>, <%= ab.author.au_fname %> </ul>
-		<%end%>
-	</h1>
-	<h1>Course(s):
-		<% @book.book_courses.each do |bc| %>
-			<ul> <%= bc.course.department %> <%= bc.course.course_number %> </ul>
-		<%end%>
-	</h1>
-
+	<div class="main-info">
+		<h1 class="book-price">$<%= @book.post.price %></h1>
+		<h1 class="book-title"> <%= @book.title %> </h1>
+		<h1 class="book-ed-vol">
+			<% unless @book.edition.blank? and @book.volume.blank? %>
+				[ <% unless @book.edition.blank? %>
+					Ed. <%= @book.edition %>
+				<% end %>
+				<% unless @book.volume.blank? %>
+					Vol. <%= @book.volume %>
+				<% end %> ]
+			<% end %>
+		</h1>
+	</div>
+	<div class="content">
+		<h1 class="book-authors">
+			<% auths = "" %>
+			<% @book.author_books.each do |ab| %>
+				<% auths += ab.author.au_fname + " " + ab.author.au_lname + ", " %>
+			<% end %>
+			<%= auths[0..-3] %>
+		</h1>
+		<h1 class="book-description"><%= @book.post.description %></h1>
+		<h1 class="book-courses">
+			<% cours = "" %>
+			<% @book.book_courses.each do |bc| %>
+				<% cours += bc.course.department + bc.course.course_number.to_s + ", " %>
+			<%end%>
+			<%= cours[0..-3] %>
+		</h1>
+		<h1><a class="contact contact-info" href="#" data-email="<%= @book.user_account.email %>"> Contact Info</a></h1>
+	</div>
 </div>

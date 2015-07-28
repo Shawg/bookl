@@ -2,10 +2,60 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "bootstrap/bootstrap";
+
+/* ================================= Error messsages =================================*/
+
+#error-explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+
+/* ================================= Search Results =================================*/
+
 .search_container {
 	float: left;
 }
+.content {
+	padding-left: 30px;
+}
 
-.header {
-	display: inline;
+.book-authors {
+	font-size: 20px;
+}
+
+.book-courses {
+	font-size: 20px;
+}
+
+.book-title {
+	font-size: 80px;
+	display: inline-block;
+}
+
+.book-ed-vol {
+	font-size: 10px;
+	display: inline-block;
+}
+
+.contact {
+	color: rgb(42, 100, 150);
+}
+
+.book-price {
+	font-size: 80px;
+	display: inline-block;
+	margin-right: 30px;
+	color: green;
 }

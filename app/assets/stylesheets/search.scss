@@ -6,7 +6,42 @@
 // ============================== Results ==============================
 
 .table th, .table td { 
-     border-top: none !important; 
- }
+	border-top: none !important; 
+}
 
- 
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 10px;
+  line-height: 1.42857143;
+}
+
+.date {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.title, .authors, .date, .price{
+	font-family: "Georgia";
+}
+
+.title {
+	font-size: 30px;
+}
+
+.authors {
+ 	font-size: 15px;
+}
+
+.awk-container {
+	padding: 20px;
+}
+
+.awkward-message {
+	line-height: 30px;
+	font-family: Georgia;
+	font-size : 25px;
+}

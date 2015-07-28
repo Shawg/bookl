@@ -1,0 +1,14 @@
+<tr class="result">
+	<% authors = result.authors.collect{ |author| author.au_fname + " " + author.au_lname } %>
+
+	<td>
+		<a href="<%= book_path(result) %>" class="title"> <%= result.send(:title) %> </a>
+		<p class="authors"> <%= authors.sort_by!{ |b| b.downcase }*", " %> </p>
+	</td>
+	<td class="price">
+		$<%= result.post.price %>
+	</td>
+	<td class="date">
+		<%= result.created_at.to_date.to_formatted_s(:long_ordinal) %>
+	</td>
+</tr>

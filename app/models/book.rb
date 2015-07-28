@@ -11,7 +11,7 @@ class Book < ActiveRecord::Base
 	accepts_nested_attributes_for :book_courses, :allow_destroy => true
 
 	validates :user_account, :title, presence: true
-	validate :has_author?, :has_course?
+	validate :has_author?, :has_course?, :has_too_many_course?, :has_too_many_author?
 
 	def has_author?
 		if author_books.blank?
@@ -22,6 +22,18 @@ class Book < ActiveRecord::Base
 	def has_course?
 		if book_courses.blank?
 			errors.add(:courses, "must have at least one course")
+		end
+	end
+
+	def has_too_many_course?
+		if book_courses.length > 3
+			errors.add(:courses, "cannot have more than 3 courses")
+		end
+	end
+
+	def has_too_many_author?
+		if author_books.length > 3
+			errors.add(:courses, "cannot have more than 3 authors")
 		end
 	end
 end

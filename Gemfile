@@ -10,12 +10,14 @@ gem 'jquery-rails',         '4.0.3'
 gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.2.3'
 gem 'sdoc',                 '0.4.0', group: :doc
+gem "font-awesome-rails"
 gem 'faker'	              
 gem 'immigrant'	
 gem 'ransack'
 gem 'responders',           '~> 2.0'
 gem 'kaminari'
 gem "factory_girl_rails", "~> 4.0"
+gem 'jquery-infinite-pages'
 
 group :development, :test do
   gem "factory_girl_rails", "~> 4.0"

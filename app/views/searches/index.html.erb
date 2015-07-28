@@ -1,11 +1,31 @@
 <div class="container">
-	<legend>Search</legend>
 	<%= search_form_for @search, enforce_utf8: false, url: 'searches', :html => {:class => "input-group input-group-lg"} do |f| %>
-		<%= f.text_field :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any, name: :query, :class => "form-control", placeholder: "ex. Catastrophic Earth EOSC 114" %>
+		<%= f.text_field :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any, name: :query, :class => "form-control", placeholder: "ex. Catastrophic Earth EOSC 114", autocomplete: 'off' %>
 		<span class="input-group-btn">
 			<%= f.submit "Search", name: nil, :class => 'btn btn-default pull-right' %>
 		</span>
 	<%end%>
+	<%= content_tag :p, display_query_sql(@results) if false %>
+	<% unless @results.empty? %>
+		<div id="results-container" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+			<table id="results" class='table table-hover'>
+				<thead>
+					<th class="col-sm-8">Book</th>
+					<%= content_tag(:th, sort_link(@search, :post_price, {}), class: 'col-sm-2') %>
+					<%= content_tag(:th, sort_link(@search, :created_at, "Posted"), class: 'col-sm-2') %>
+				</thead>
+
+				<tbody class="page">
+					<%= render partial: 'result', collection: @results %>
+				</tbody>
+			</table>
+		</div>
+	<% else %>
+		<div class="awk-container">
+			<p class="awkward-message"> Well, this is awkward... </p>
+			<p class="no-match awkward-message"> No posts matched your search </p>
+			<a href=""> <p class="get-alert"> Click here to receive an email when a match is posted </p> </a>
+		</div>
+	<% end %>
 	<%= paginate @results %>
-	<%= render 'results' %>
 </div>

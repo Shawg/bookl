@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  # root 'searches#index'
-  root 'static_pages#home'
+  root 'searches#index'
+  # root 'static_pages#home'
 
   get 'search' => 'searches#index'
 

@@ -11,6 +11,9 @@ class UserAccountsController < ApplicationController
   # GET /user_accounts/1
   # GET /user_accounts/1.json
   def show
+    @current_user_books = current_user_account.books
+    @search = @current_user_books.ransack(params[:q])
+    @results = @search.result(:distinct => true).order('created_at DESC')
   end
 
   # GET /user_accounts/new

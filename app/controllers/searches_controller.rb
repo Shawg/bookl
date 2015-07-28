@@ -1,9 +1,12 @@
 class SearchesController < ApplicationController
 	before_action :set_search, only: [:show]
-	PAGESIZE = 40
+	PAGESIZE = 15
 
 	def index
-		unless params[:query].nil?
+		if params[:query].nil? or params[:query] == ""
+			@search = Book.ransack(params[:q])
+			@results = @search.result.includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
+		else
 			params[:combinator] = 'or'
 			params[:groupings] = []
 			custom_words = params[:query]
@@ -11,11 +14,11 @@ class SearchesController < ApplicationController
 				params[:groupings][index] = {title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont: word}
 			end
 			@search = Book.joins(:authors, :courses).ransack(params)
+			unless (params[:q].nil?)
+				@search.sorts = params[:q]['s']
+			end
 			@results = @search.result(:distinct=>true).includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
-			return
 		end
-		@search = Book.ransack(params[:q])
-		@results = @search.result.includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
 	end
 
 	def new

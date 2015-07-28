@@ -6,3 +6,10 @@ $(document).on 'click', '.remove_field', (event) ->
   $(this).prev('input[type=hidden]').val('1')
   $(this).closest('.form-inline').hide()
   event.preventDefault()
+
+$(document).on 'click', '.contact-info', (e) ->
+	e.preventDefault()
+	email = $(this).data('email')
+	$(this).text(email)
+	$(this).attr('href', "mailto:" + email)
+	$(this).removeClass('contact-info')
