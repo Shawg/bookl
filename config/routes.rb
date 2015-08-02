@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'searches#index'
+  root 'books#index'
   # root 'static_pages#home'
 
   get 'search' => 'searches#index'
@@ -32,8 +32,7 @@ Rails.application.routes.draw do
   resources :user_accounts
   resources :posts
   resources :searches
-  resources :books
-  
+  resources :books 
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

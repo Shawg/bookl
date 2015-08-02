@@ -1,0 +1,17 @@
+<div class="form-inline row">
+	<%= f.fields_for :course do |c| %>
+		<div class="input-group">
+			<%= c.text_field :department, placeholder: 'Department', class: "form-control invisible_input" %>
+		</div>
+		<div class="input-group">
+			<%= c.text_field :course_number, placeholder: 'Course #', class: "form-control invisible_input" %>
+		</div>
+		<%= f.hidden_field :_destroy %>
+
+		<span class="input-group form-group-btn">
+			<button class="btn btn-default link_to_add_fields form-control">
+				<span class="glyphicon glyphicon-plus"></span>
+			</button>
+		</span>
+	<% end %>
+</div>

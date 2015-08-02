@@ -27,6 +27,7 @@ en:
         courses: "Book"
       post:
         price: "Price"
+        description: "Description"
       book_courses/course:
         course_number: "Course number"
         department: "Department"

@@ -18,6 +18,7 @@ gem 'responders',           '~> 2.0'
 gem 'kaminari'
 gem "factory_girl_rails", "~> 4.0"
 gem 'jquery-infinite-pages'
+gem 'cocoon'
 
 group :development, :test do
   gem "factory_girl_rails", "~> 4.0"

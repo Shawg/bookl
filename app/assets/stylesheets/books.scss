@@ -3,26 +3,84 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "bootstrap/bootstrap";
+/* ================================= New =================================*/
+
+textarea.input_description {
+	font-size: 30px;
+}
+
+.form-inline .form-control {
+	width: auto;
+}
+
+.form-inline .input-group {
+	display: inline-block;
+}
+
+input.invisible_input, textarea.input_description {
+	border: none;
+	box-shadow: none; 
+	resize: none;
+	overflow: hidden;
+}
+
+input.invisible_input:focus, textarea.input_description:focus {
+	box-shadow: none
+}
 
 /* ================================= Error messsages =================================*/
 
-#error-explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
+div.field_with_errors {
+	input, textarea {
+		color: rgb(169,68,66);
+	}
 
-.field_with_errors {
-  @extend .has-error;
-  .form-control {
-    color: $state-danger-text;
-  }
-}
+	padding: 0px;
+	/* WebKit browsers */
+	::-webkit-input-placeholder {
+		color: rgba(169,68,66,.8);
+	}
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+	   color:    rgba(169,68,66,.8);
+	   opacity:  1;
+	}
+	::-moz-placeholder { /* Mozilla Firefox 19+ */
+	   color:    rgba(169,68,66,.8);
+	   opacity:  1;
+	}
+	:-ms-input-placeholder { /* Internet Explorer 10+ */
+	   color:    rgba(169,68,66,.8);
+	}
 
+	width: 100%;
+}
 
 /* ================================= Search Results =================================*/
+
+.date {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.title {
+	font-size: 30px;
+}
+
+.authors {
+ 	font-size: 15px;
+}
+
+.awk-container {
+	padding: 20px;
+}
+
+.awkward-message {
+	line-height: 30px;
+	font-size : 25px;
+}
+
+/* ===================================== Show =====================================*/
+
 
 .search_container {
 	float: left;

@@ -1,5 +1,5 @@
 <div class="container">
-	<%= search_form_for @search, enforce_utf8: false, url: 'searches', :html => {:class => "input-group input-group-lg"} do |f| %>
+	<%= search_form_for @search, enforce_utf8: false, :html => {:class => "input-group input-group-lg"} do |f| %>
 		<%= f.text_field :title_or_authors_au_fname_or_authors_au_lname_or_courses_department_cont_any, name: :query, :class => "form-control", placeholder: "ex. Catastrophic Earth EOSC 114", autocomplete: 'off' %>
 		<span class="input-group-btn">
 			<%= f.submit "Search", name: nil, :class => 'btn btn-default pull-right' %>
@@ -10,7 +10,7 @@
 		<div id="results-container" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 			<table id="results" class='table table-hover'>
 				<thead>
-					<th class="col-sm-8">Book</th>
+					<%= content_tag(:th, sort_link(@search, :title, {}), class: 'col-sm-8') %>
 					<%= content_tag(:th, sort_link(@search, :post_price, {}), class: 'col-sm-2') %>
 					<%= content_tag(:th, sort_link(@search, :created_at, "Posted"), class: 'col-sm-2') %>
 				</thead>

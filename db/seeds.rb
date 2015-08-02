@@ -46,8 +46,10 @@ UserAccount.create(
       user_account_id: user.id
     )
 
+    p book
+
     # populating authors
-    rand(1..4).times do
+    rand(1..3).times do
       author = Author.create(
         au_lname: "#{Name.first_name}",
         au_fname: "#{Name.last_name}"

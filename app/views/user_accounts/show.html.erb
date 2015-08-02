@@ -2,13 +2,12 @@
   <h1>History</h1>
   <h3 style="display:inline-block"><%= current_user_account.email %></h3>
   <%= link_to '[edit]', edit_user_account_path %>
-  <table class="table table-hover">
+  <table id="posted_books" class="table">
     <thead>
       <tr>
         <th>Book</th>
-        <th>Status</th>
-        <%= content_tag(:th, sort_link(@search, :created_at, "Posted")) %>
-        <th colspan="3"></th>
+        <%= content_tag(:th, sort_link(@search, :created_at, "Date")) %>
+        <th colspan="4"></th>
       </tr>
     </thead>  
 
@@ -17,9 +16,10 @@
         <tr> <td> No books posted </td> </tr>
       <% else %>
         <% @results.each do |book| %>
-          <tr class="<%= book.active ? '' : 'danger' %>">
-            <td><%= link_to book.title, book %></td>
-            <td>
+          <tr class="<%= book.active ? '' : 'danger' %> posted_book">
+            <td class="book_cell hover_cell"><%= link_to book.title, book %></td>
+            <td class="date_cell hover_cell"> <%= Time.at(book.created_at).to_formatted_s(:long) %> </td>
+            <td class="hover_cell active_cell">
               <% if book.active %>
                 Posted
               <% else %>
@@ -27,9 +27,12 @@
                 <%= link_to 'Repost', repost_path(id: book.id) %>
               <% end %>
             </td>
-            <td> <%= Time.at(book.created_at).to_formatted_s(:long) %> </td>
-            <td><%= link_to 'Edit', edit_book_path(book) %></td>
-            <td><%= link_to 'Destroy', book, id: current_user_account.id, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <td class="hover_cell edit_cell">
+              <%= link_to 'Edit', edit_book_path(book) %>
+            </td>
+            <td class="hover_cell destroy_cell">
+              <%= link_to 'Destroy', book, id: current_user_account.id, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
           </tr>
         <% end %>
       <% end %>

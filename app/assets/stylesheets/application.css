@@ -18,3 +18,24 @@
 body {
 	font-family: "Georgia";
 }
+
+
+/* Table Rows */
+
+.table th, .table td { 
+	border-top: none !important; 
+}
+
+.result:hover, .posted_book:hover {
+	cursor: pointer;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+  padding: 10px;
+  line-height: 1.42857143;
+}

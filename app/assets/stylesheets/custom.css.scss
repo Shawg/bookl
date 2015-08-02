@@ -36,6 +36,7 @@
 body {
   padding-bottom: 40px;
   color: #5a5a5a;
+  font-family: "Georgia";
 }
 
 
@@ -68,6 +69,10 @@ body {
 }
 .navbar-wrapper .navbar .container {
   width: 100%;
+}
+
+.navbar-header .navbar-toggle .icon-bar {
+  background-color: gray;
 }
 
 
