@@ -19,9 +19,6 @@ $(document).on('click', '.result', function(e) {
 	console.log($(this).closest('.form-inline').find('input[type=hidden]:first'));
 	$(this).closest('.form-inline').hide();
 
-	// Removing courses/authors input (create view)
-	// $(this).closest('input[type=hidden').val(1);
-	// this.closest('.form-inline').remove();
 }).on("click", ".link_to_add_fields", function(e){
 	// Adding authors/courses
 	e.preventDefault();
@@ -73,11 +70,17 @@ function set_button_icons(controlForm) {
 
 // Dynamic height for textarea
 $(document).on('ready page:load', function () {
-	var observe;
+
 	$('.container').find('.dynamic_inputs').each(function(index, elm) {
+		// var link = $(this).next().find('.hidden_fields_link');
+		// var association = link.data("association");
+		// var content = link.data("content");
+		// var controlForm = $(this).closest('.dynamic_inputs');
+		// add_fields(link, association, content, controlForm);
 		set_button_icons(elm);
-		console.log('set icons');
 	});
+
+	var observe;
 
 	if (window.attachEvent) {
 	    observe = function(element, event, handler) {

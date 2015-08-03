@@ -25,12 +25,12 @@
 	<%= f.hidden_field :user_account_id, :value => current_user_account.id %>
 
 	<div id="authors" class="dynamic_inputs">
-		<%= f.fields_for :author_books do |ab| %>
-			<%= render 'author_book_fields', :f => ab %>
+		<%= f.fields_for :authors do |a| %>
+			<%= render 'author_fields', :f => a %>
 		<% end %>
 	</div>
 	
-	<p><%= link_to_add_fields "Add Author", f, :author_books %></p>
+	<p><%= link_to_add_fields "Add Author", f, :authors %></p>
 
 
 	<%= f.fields_for :post do |p| %>
@@ -40,12 +40,12 @@
 	<% end %>
 
 	<div id="courses" class="dynamic_inputs">
-		<%= f.fields_for :book_courses do |bc| %>
-			<%= render 'book_course_fields', :f => bc %>
+		<%= f.fields_for :courses do |c| %>
+			<%= render 'course_fields', :f => c %>
 		<% end %>			
 	</div>
 
-	<p><%= link_to_add_fields "Add Course", f, :book_courses %></p>
+	<p><%= link_to_add_fields "Add Course", f, :courses %></p>
 		
 	<%= f.submit 'Submit', class: "btn btn-block btn-default" %>
 

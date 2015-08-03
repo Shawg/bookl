@@ -26,21 +26,20 @@ respond_to :html, :js
   # GET /books/1
   # GET /books/1.json
   def show
-    # @book = set_book
   end
 
   # GET /books/new
   def new
     @book = Book.new
     @post = @book.build_post
-    @author_books = @book.author_books.build
-    @author = @author_books.build_author
-    @book_courses = @book.book_courses.build
-    @course = @book_courses.build_course
+    @author = @book.authors.build
+    @course = @book.courses.build
   end
 
   # GET /books/1/edit
   def edit
+    @author = @book.authors.build
+    @course = @book.courses.build
   end
 
   # book /books
@@ -50,7 +49,7 @@ respond_to :html, :js
     respond_to do |format|
       if @book.save
         flash[:success] = "Successfully created book."
-        redirect_to current_user_account and return
+        redirect_to @book and return
       else 
         format.html { render :new }
         format.json { render json: @book.errors, status: :unprocessable_entity }
@@ -97,7 +96,7 @@ respond_to :html, :js
     def book_params
       params.require(:book).permit(:id, :isbn, :title, :volume, :edition, :user_account_id, 
         post_attributes: [:id, :price, :description, :book_id],
-        author_books_attributes: [:id, :_destroy, author_attributes: [:id, :au_fname, :au_lname, :_destroy]],
-        book_courses_attributes: [:id, :_destroy, course_attributes: [:id, :department, :course_number, :_destroy]])
+        authors_attributes: [:id, :au_fname, :au_lname, :_destroy],
+        courses_attributes: [:id, :department, :course_number, :_destroy])
     end
 end

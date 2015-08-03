@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150527083816) do
+ActiveRecord::Schema.define(version: 20150802193059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,7 @@ ActiveRecord::Schema.define(version: 20150527083816) do
     t.string   "au_fname",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "authors_books", force: :cascade do |t|
-    t.integer "book_id",   null: false
-    t.integer "author_id", null: false
+    t.integer  "book_id"
   end
 
   create_table "books", force: :cascade do |t|
@@ -39,16 +35,12 @@ ActiveRecord::Schema.define(version: 20150527083816) do
     t.boolean  "active",          default: true, null: false
   end
 
-  create_table "books_courses", force: :cascade do |t|
-    t.integer "course_id", null: false
-    t.integer "book_id",   null: false
-  end
-
   create_table "courses", force: :cascade do |t|
     t.string   "department"
     t.integer  "course_number"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+    t.integer  "book_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -59,19 +51,6 @@ ActiveRecord::Schema.define(version: 20150527083816) do
     t.integer  "book_id",     null: false
   end
 
-  create_table "searches", force: :cascade do |t|
-    t.string   "title"
-    t.string   "isbn"
-    t.string   "volume"
-    t.string   "edition"
-    t.string   "au_first"
-    t.string   "au_last"
-    t.string   "course"
-    t.string   "department"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_accounts", force: :cascade do |t|
     t.string   "email",                           null: false
     t.boolean  "isAdmin?",        default: false
@@ -80,10 +59,8 @@ ActiveRecord::Schema.define(version: 20150527083816) do
     t.string   "password_digest"
   end
 
-  add_foreign_key "authors_books", "authors", name: "author_id"
-  add_foreign_key "authors_books", "books", name: "book_id"
+  add_foreign_key "authors", "books"
   add_foreign_key "books", "user_accounts"
-  add_foreign_key "books_courses", "books", name: "book_id"
-  add_foreign_key "books_courses", "courses", name: "course_id"
+  add_foreign_key "courses", "books"
   add_foreign_key "posts", "books", name: "book_id"
 end

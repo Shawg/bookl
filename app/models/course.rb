@@ -1,6 +1,5 @@
 class Course < ActiveRecord::Base
-	has_many :books, :through => :book_courses
-	has_many :book_courses, inverse_of: :course
+	belongs_to :books
 	validates :course_number, :department, presence: true
 	validate :department_format
 	validate :course_number_format

@@ -28,8 +28,8 @@ en:
       post:
         price: "Price"
         description: "Description"
-      book_courses/course:
+      courses:
         course_number: "Course number"
         department: "Department"
-      author_books/author:
+      authors:
         au_lname: "Author's last name"
