@@ -50,33 +50,10 @@ function set_button_icons(controlForm) {
 		.html('<span class="glyphicon glyphicon-plus"></span>');
 }
 
-// Delete empty fields on submit
-// $(document).on('submit', '#new_book', function(e) {
-// 	$(this).find('#authors .form-inline:not(:first), #courses .form-inline:not(:first)').each(function(i, elm) {
-// 		$(elm).find('div.input-group:even').each(function(j, input) {
-// 			var first   = $(input).find('input');
-// 			var last    = $(input).next().find('input');
-// 			var destroy = $(input).next().next();
-// 			if (!first.val() && !last.val()) {
-// 				// set destroy to true
-// 				destroy.val(1);
-// 				// remove element from dom
-// 				$(elm).remove();
-// 			}
-// 		});
-// 	});
-// });
-
-
 // Dynamic height for textarea
 $(document).on('ready page:load', function () {
 
 	$('.container').find('.dynamic_inputs').each(function(index, elm) {
-		// var link = $(this).next().find('.hidden_fields_link');
-		// var association = link.data("association");
-		// var content = link.data("content");
-		// var controlForm = $(this).closest('.dynamic_inputs');
-		// add_fields(link, association, content, controlForm);
 		set_button_icons(elm);
 	});
 

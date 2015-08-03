@@ -23,8 +23,7 @@
               <% if book.active %>
                 Posted
               <% else %>
-                Expired
-                <%= link_to 'Repost', repost_path(id: book.id) %>
+                <%= link_to 'Repost?', repost_path(id: book.id) %>
               <% end %>
             </td>
             <td class="hover_cell edit_cell">

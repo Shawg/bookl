@@ -16,3 +16,9 @@
 //= require turbolinks
 //= require_bootstrap
 //= require_tree .
+
+$(document).on("keypress", '#new_book', function (e) {
+    if (e.keyCode == 13) {
+        return false;
+    }
+});

@@ -70,7 +70,7 @@ respond_to :html, :js
 
   def repost
     @book = Book.find(params[:id])
-    @book.update_attributes active: !@book.active
+    @book.update_attributes active: true
     redirect_to user_account_path(current_user_account)
   end
 

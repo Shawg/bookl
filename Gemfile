@@ -11,17 +11,16 @@ gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.2.3'
 gem 'sdoc',                 '0.4.0', group: :doc
 gem "font-awesome-rails"
-gem 'faker'	              
+gem 'faker',                github: 'stympy/faker'
 gem 'immigrant'	
 gem 'ransack'
 gem 'responders',           '~> 2.0'
 gem 'kaminari'
-gem "factory_girl_rails", "~> 4.0"
+gem "factory_girl_rails",   "~> 4.0"
 gem 'jquery-infinite-pages'
 gem 'cocoon'
 
 group :development, :test do
-  gem "factory_girl_rails", "~> 4.0"
   gem 'rspec-rails', '~> 3.0'
   gem 'pg',          '0.17.1'
   gem 'byebug',      '3.4.0'
