@@ -28,14 +28,14 @@ class Book < ActiveRecord::Base
 	end
 
 	def has_author?
-		if authors.blank?
-			errors.add(:authors, "must have at least one author")
+		if authors.length == 0
+			errors.add(:book, "must have at least one author")
 		end
 	end
 
 	def has_course?
-		if courses.blank?
-			errors.add(:courses, "must have at least one course")
+		if courses.length == 0
+			errors.add(:book, "must have at least one course")
 		end
 	end
 

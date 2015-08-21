@@ -1,11 +1,7 @@
 Rails.application.routes.draw do
-
-  root 'books#index'
-  # root 'static_pages#home'
+  root 'static_pages#home'
 
   get 'search' => 'searches#index'
-
-  get 'bookl' => 'static_pages#home'
   get 'about' => 'static_pages#about'
 
   get 'user_accounts/index'
@@ -33,6 +29,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :searches
   resources :books 
+  resources :password_resets
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -68,7 +68,6 @@ UserAccount.create(
       isbn: "#{Faker::Code.isbn}",
       volume: "#{Faker::App.version}",
       edition: "#{Faker::Number.digit}",
-      # title: "#{App.name}",
       title: "#{Faker::Book.title}",
       created_at: "#{Faker::Date.between(30.days.ago, Date.today)}",
       active: rand(2) == 1,

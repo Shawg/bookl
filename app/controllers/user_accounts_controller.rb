@@ -91,7 +91,7 @@ end
 
     respond_to do |format|
       if @user_account.save
-        flash[:success] = "Welcome to Bookl!"
+        flash[:success] = "Welcome to TextBookr!"
         log_in @user_account
         format.html { redirect_to @user_account }
         format.json { render :show, status: :created, location: @user_account }
@@ -107,7 +107,8 @@ end
   def update
     respond_to do |format|
       if @user_account.update(user_account_params)
-        format.html { redirect_to @user_account, notice: 'User account was successfully updated.' }
+        flash[:success] = 'User account was successfully updated.'
+        format.html { redirect_to @user_account }
         format.json { render :show, status: :ok, location: @user_account }
       else
         format.html { render :edit }
@@ -121,8 +122,9 @@ end
   def destroy
     @user_account = UserAccount.find(params[:id])
     @user_account.destroy
+    flash[:info] = 'Account was destroyed :('
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'User account was successfully destroyed.' }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end

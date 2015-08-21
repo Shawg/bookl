@@ -17,11 +17,41 @@ textarea.input_description {
 	display: inline-block;
 }
 
+.link_to_add_fields, .btn-remove {
+	margin-top: 10px;
+	margin-left: 10px;
+	border-radius: 5px !important;
+}
+
 input.invisible_input, textarea.input_description {
+	margin: 10px;
 	border: none;
+	background-color: #f2f2f2;
 	box-shadow: none; 
 	resize: none;
 	overflow: hidden;
+}
+
+input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+input:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+input:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+
+textarea:focus::-webkit-input-placeholder { color:transparent; }
+textarea:focus:-moz-placeholder { color:transparent; } /* FF 4-18 */
+textarea:focus::-moz-placeholder { color:transparent; } /* FF 19+ */
+textarea:focus:-ms-input-placeholder { color:transparent; } /* IE 10+ */
+	
+input {
+	border-radius: 5px !important;
+}
+
+input.invisible_input{
+	text-align:center;
+}
+
+input.invisible_input:focus{
+	text-align:left;
 }
 
 input.invisible_input:focus, textarea.input_description:focus {

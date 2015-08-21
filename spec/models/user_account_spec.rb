@@ -5,7 +5,7 @@ RSpec.describe UserAccount, type: :model do
 		expect { create(:user_account) }.to change {UserAccount.count}.by(1)
 	end
 	it 'destoys user' do
-		user = create(:user_with_books)
+		user = create(:user_account)
 		expect { user.destroy }.to change {UserAccount.count}.by(-1)
 	end
 end

@@ -15,6 +15,11 @@
  *= require font-awesome
  */
 
+.home_input {
+	font-size: 50px;
+	line-height: 90px;
+}
+
 body {
 	font-family: "Georgia";
 }

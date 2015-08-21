@@ -8,7 +8,7 @@
 			<div class="input-group col-sm-1, col-xs-2">
 				<%= p.text_field :price, placeholder: '$', class: "form-control invisible_input dynamic_size" %>
 			</div>
-			<div class="input-group col-sm-10, col-xs-5">
+			<div class="input-group col-sm-11, col-xs-5">
 				<%= f.text_field :title, placeholder: 'Tilte', class: "form-control invisible_input dynamic_size" %>
 			</div>
 
@@ -34,7 +34,7 @@
 
 
 	<%= f.fields_for :post do |p| %>
-		<div class="form-group row">
+		<div class="form-group row col-sm-12" style="padding-left : 0px">
 			<%= p.text_area :description, placeholder: 'Add a description here (must be longer than 15 characters).', id: "description", class: "form-control input_description dynamic_height" %>
 		</div>
 	<% end %>
