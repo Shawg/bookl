@@ -1,7 +1,12 @@
 class BooksController < ApplicationController
 before_action :set_book, only: [:show, :edit, :update, :destroy]
+before_action :set_search
 respond_to :html, :js
-  
+
+  def set_search
+    @search = Book.search(params[:q])
+  end
+
   PAGESIZE = 15
   def index
     if params[:query].nil? or params[:query] == ""
