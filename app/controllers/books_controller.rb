@@ -5,6 +5,7 @@ respond_to :html, :js
 
   def set_search
     @search = Book.search(params[:q])
+    @results = @search.result.includes(:post, :authors, :courses).page(params[:page]).per(PAGESIZE)
   end
 
   PAGESIZE = 15
