@@ -1,7 +1,15 @@
-Bookl
+#TextBookr
+
+###View at textbooker.herokuapp.com
+
 Authors:
 	Geoff Shaw
 	Elias Friedman
 	Mike Spearman
 
-We used Michael Hartl's ruby on rails tutorial found at railstutorial.com for a reference in adding sessions control and password encryption for users
+##TODO:
+
+Fix Safari UI bugs for search view
+Flatten search bar ie no highlights/shadows
+Email not sending for 'forgot password'
+Implement 'email when book is found' feature
