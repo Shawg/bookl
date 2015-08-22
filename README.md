@@ -11,5 +11,5 @@
 
 - Fix Safari UI bugs for search view
 - Flatten search bar ie no highlights/shadows
-~~- Email not sending for 'forgot password'~~
+- ~~Email not sending for 'forgot password'~~
 - Implement 'email when book is found' feature
