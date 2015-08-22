@@ -1,6 +1,6 @@
 #TextBookr
 
-###View at (textbookr-beta.herokuapp.com)[textbookr-beta.herokuapp.com]
+###View at [textbookr-beta.herokuapp.com](textbookr-beta.herokuapp.com)
 
 ###Authors
 - Geoff Shaw
